@@ -232,9 +232,6 @@ set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[67] -t
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[68] -to "BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|oHEAD_ERR_CNT[9]" -section_id auto_signaltap_1
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[4] -to auto_signaltap_1|vcc -section_id auto_signaltap_1
 set_global_assignment -name VECTOR_WAVEFORM_FILE sim_err_solv.vwf
-set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
-set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
-set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_instance_assignment -name VIRTUAL_PIN ON -to iIm_Re_sample_sig[31]
 set_instance_assignment -name VIRTUAL_PIN ON -to iIm_Re_sample_sig[30]
 set_instance_assignment -name VIRTUAL_PIN ON -to iIm_Re_sample_sig[29]
@@ -410,5 +407,9 @@ set_location_assignment PIN_R8 -to iCLK
 set_instance_assignment -name VIRTUAL_PIN ON -to oC3_140MHZ
 set_instance_assignment -name VIRTUAL_PIN ON -to oC1_112MHZ
 set_instance_assignment -name VIRTUAL_PIN ON -to oC3_70MHZ_PS
-set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
+set_global_assignment -name VECTOR_WAVEFORM_FILE sim_blvds_rec.vwf
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_global_assignment -name SLD_FILE db/stp2_auto_stripped.stp
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

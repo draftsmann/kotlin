@@ -1,5 +1,5 @@
 Analysis & Synthesis report for test_sf
-Thu Apr 02 10:53:59 2020
+Thu Apr 02 13:15:17 2020
 Quartus Prime Version 16.0.0 Build 211 04/27/2016 SJ Standard Edition
 
 
@@ -71,12 +71,10 @@ Quartus Prime Version 16.0.0 Build 211 04/27/2016 SJ Standard Edition
  63. Port Connectivity Checks: "BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst"
  64. SignalTap II Logic Analyzer Settings
  65. Post-Synthesis Netlist Statistics for Top Partition
- 66. Post-Synthesis Netlist Statistics for Partition sld_signaltap:auto_signaltap_1
- 67. Post-Synthesis Netlist Statistics for Partition sld_hub:auto_hub
- 68. Elapsed Time Per Partition
- 69. Connections to In-System Debugging Instance "auto_signaltap_1"
- 70. Analysis & Synthesis Messages
- 71. Analysis & Synthesis Suppressed Messages
+ 66. Elapsed Time Per Partition
+ 67. Connections to In-System Debugging Instance "auto_signaltap_1"
+ 68. Analysis & Synthesis Messages
+ 69. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -103,13 +101,13 @@ agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Thu Apr 02 10:53:59 2020           ;
+; Analysis & Synthesis Status        ; Successful - Thu Apr 02 13:15:17 2020           ;
 ; Quartus Prime Version              ; 16.0.0 Build 211 04/27/2016 SJ Standard Edition ;
 ; Revision Name                      ; test_sf                                         ;
 ; Top-level Entity Name              ; SIMULATION_TOP                                  ;
 ; Family                             ; Cyclone IV E                                    ;
-; Total logic elements               ; 3,332                                           ;
-;     Total combinational functions  ; 2,060                                           ;
+; Total logic elements               ; 3,340                                           ;
+;     Total combinational functions  ; 2,068                                           ;
 ;     Dedicated logic registers      ; 2,243                                           ;
 ; Total registers                    ; 2243                                            ;
 ; Total pins                         ; 1                                               ;
@@ -338,16 +336,16 @@ agreement for further details.
 +---------------------------------------------+------------------------------------------------------------------------------------+
 ; Resource                                    ; Usage                                                                              ;
 +---------------------------------------------+------------------------------------------------------------------------------------+
-; Estimated Total logic elements              ; 3,332                                                                              ;
+; Estimated Total logic elements              ; 3,340                                                                              ;
 ;                                             ;                                                                                    ;
-; Total combinational functions               ; 2060                                                                               ;
+; Total combinational functions               ; 2068                                                                               ;
 ; Logic element usage by number of LUT inputs ;                                                                                    ;
-;     -- 4 input functions                    ; 891                                                                                ;
-;     -- 3 input functions                    ; 494                                                                                ;
-;     -- <=2 input functions                  ; 675                                                                                ;
+;     -- 4 input functions                    ; 908                                                                                ;
+;     -- 3 input functions                    ; 487                                                                                ;
+;     -- <=2 input functions                  ; 673                                                                                ;
 ;                                             ;                                                                                    ;
 ; Logic elements by mode                      ;                                                                                    ;
-;     -- normal mode                          ; 1497                                                                               ;
+;     -- normal mode                          ; 1505                                                                               ;
 ;     -- arithmetic mode                      ; 563                                                                                ;
 ;                                             ;                                                                                    ;
 ; Total registers                             ; 2243                                                                               ;
@@ -365,7 +363,7 @@ agreement for further details.
 ;                                             ;                                                                                    ;
 ; Maximum fan-out node                        ; pll1:pll1_inst|altpll:altpll_component|pll1_altpll:auto_generated|wire_pll1_clk[0] ;
 ; Maximum fan-out                             ; 1704                                                                               ;
-; Total fan-out                               ; 16603                                                                              ;
+; Total fan-out                               ; 16654                                                                              ;
 ; Average fan-out                             ; 3.73                                                                               ;
 +---------------------------------------------+------------------------------------------------------------------------------------+
 
@@ -375,9 +373,9 @@ agreement for further details.
 +-----------------------------------------------------------------------------------------------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+--------------+
 ; Compilation Hierarchy Node                                                                                                              ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                                                                                                                                                                                                                                        ; Entity Name                       ; Library Name ;
 +-----------------------------------------------------------------------------------------------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+--------------+
-; |SIMULATION_TOP                                                                                                                         ; 2060 (33)         ; 2243 (27)    ; 401408      ; 0            ; 0       ; 0         ; 1    ; 20           ; |SIMULATION_TOP                                                                                                                                                                                                                                                                                                                                            ; SIMULATION_TOP                    ; work         ;
-;    |BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|                                                                                                   ; 684 (7)           ; 557 (0)      ; 32768       ; 0            ; 0       ; 0         ; 0    ; 0            ; |SIMULATION_TOP|BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst                                                                                                                                                                                                                                                                                                           ; BLVDS_uPP_TOP                     ; work         ;
-;       |BLVDS_RECEIVER:BLVDS_RECEIVER_inst|                                                                                              ; 274 (274)         ; 140 (140)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |SIMULATION_TOP|BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|BLVDS_RECEIVER:BLVDS_RECEIVER_inst                                                                                                                                                                                                                                                                        ; BLVDS_RECEIVER                    ; work         ;
+; |SIMULATION_TOP                                                                                                                         ; 2068 (33)         ; 2243 (27)    ; 401408      ; 0            ; 0       ; 0         ; 1    ; 20           ; |SIMULATION_TOP                                                                                                                                                                                                                                                                                                                                            ; SIMULATION_TOP                    ; work         ;
+;    |BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|                                                                                                   ; 689 (7)           ; 557 (0)      ; 32768       ; 0            ; 0       ; 0         ; 0    ; 0            ; |SIMULATION_TOP|BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst                                                                                                                                                                                                                                                                                                           ; BLVDS_uPP_TOP                     ; work         ;
+;       |BLVDS_RECEIVER:BLVDS_RECEIVER_inst|                                                                                              ; 279 (279)         ; 140 (140)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |SIMULATION_TOP|BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|BLVDS_RECEIVER:BLVDS_RECEIVER_inst                                                                                                                                                                                                                                                                        ; BLVDS_RECEIVER                    ; work         ;
 ;       |ERROR_SOLVER:ERROR_SOLVER_inst|                                                                                                  ; 66 (15)           ; 52 (4)       ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |SIMULATION_TOP|BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|ERROR_SOLVER:ERROR_SOLVER_inst                                                                                                                                                                                                                                                                            ; ERROR_SOLVER                      ; work         ;
 ;          |ERR_CNT:ERR_CNT_EPILOG|                                                                                                       ; 17 (0)            ; 16 (0)       ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |SIMULATION_TOP|BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|ERROR_SOLVER:ERROR_SOLVER_inst|ERR_CNT:ERR_CNT_EPILOG                                                                                                                                                                                                                                                     ; ERR_CNT                           ; work         ;
 ;             |lpm_counter:LPM_COUNTER_component|                                                                                         ; 17 (0)            ; 16 (0)       ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |SIMULATION_TOP|BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|ERROR_SOLVER:ERROR_SOLVER_inst|ERR_CNT:ERR_CNT_EPILOG|lpm_counter:LPM_COUNTER_component                                                                                                                                                                                                                   ; lpm_counter                       ; work         ;
@@ -569,7 +567,7 @@ agreement for further details.
 ;                |lpm_shiftreg:ram_data_shift_out|                                                                                        ; 90 (90)           ; 90 (90)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |SIMULATION_TOP|sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_offload_buffer_mgr:\stp_non_zero_depth_offload_gen:stp_offload_buff_mgr_inst|lpm_shiftreg:ram_data_shift_out                                                                                                               ; lpm_shiftreg                      ; work         ;
 ;                |lpm_shiftreg:status_data_shift_out|                                                                                     ; 25 (25)           ; 25 (25)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |SIMULATION_TOP|sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_offload_buffer_mgr:\stp_non_zero_depth_offload_gen:stp_offload_buff_mgr_inst|lpm_shiftreg:status_data_shift_out                                                                                                            ; lpm_shiftreg                      ; work         ;
 ;             |sld_rom_sr:crc_rom_sr|                                                                                                     ; 30 (30)           ; 8 (8)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |SIMULATION_TOP|sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_rom_sr:crc_rom_sr                                                                                                                                                                                                          ; sld_rom_sr                        ; work         ;
-;    |user_bcvs:user_bcvs_inst|                                                                                                           ; 530 (530)         ; 100 (100)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |SIMULATION_TOP|user_bcvs:user_bcvs_inst                                                                                                                                                                                                                                                                                                                   ; user_bcvs                         ; work         ;
+;    |user_bcvs:user_bcvs_inst|                                                                                                           ; 533 (533)         ; 100 (100)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |SIMULATION_TOP|user_bcvs:user_bcvs_inst                                                                                                                                                                                                                                                                                                                   ; user_bcvs                         ; work         ;
 +-----------------------------------------------------------------------------------------------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -783,92 +781,63 @@ Encoding Type: Safe One-Hot
 +--------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------+--------------------------------------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                                                                                                                                                                                                                                                                                                                                            ;
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Register name                                                                                                                                                                           ; Reason for Removal                                                                                                                                                                                  ;
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; user_bcvs:user_bcvs_inst|rnum_pack[2..7]                                                                                                                                                ; Stuck at GND due to stuck port data_in                                                                                                                                                              ;
-; user_bcvs:user_bcvs_inst|rnum_pack[1]                                                                                                                                                   ; Stuck at VCC due to stuck port data_in                                                                                                                                                              ;
-; user_bcvs:user_bcvs_inst|rnum_pack[0]                                                                                                                                                   ; Stuck at GND due to stuck port data_in                                                                                                                                                              ;
-; user_bcvs:user_bcvs_inst|num_sample[10..15]                                                                                                                                             ; Stuck at GND due to stuck port data_in                                                                                                                                                              ;
-; user_bcvs:user_bcvs_inst|num_sample[9]                                                                                                                                                  ; Stuck at VCC due to stuck port data_in                                                                                                                                                              ;
-; user_bcvs:user_bcvs_inst|num_sample[0..8]                                                                                                                                               ; Stuck at GND due to stuck port data_in                                                                                                                                                              ;
-; user_bcvs:user_bcvs_inst|rnum_sample[10..15]                                                                                                                                            ; Stuck at GND due to stuck port data_in                                                                                                                                                              ;
-; user_bcvs:user_bcvs_inst|rnum_sample[9]                                                                                                                                                 ; Stuck at VCC due to stuck port data_in                                                                                                                                                              ;
-; user_bcvs:user_bcvs_inst|rnum_sample[0..8]                                                                                                                                              ; Stuck at GND due to stuck port data_in                                                                                                                                                              ;
-; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|GPIO_SOLVER:GPIO_SOLVER_inst|rLATENCY[1..8]                                                                                                            ; Stuck at GND due to stuck port data_in                                                                                                                                                              ;
-; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|GPIO_SOLVER:GPIO_SOLVER_inst|rLATENCY[0]                                                                                                               ; Stuck at VCC due to stuck port data_in                                                                                                                                                              ;
-; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|FIFO_16:FIFO_16_B|dcfifo:dcfifo_component|dcfifo_p1l1:auto_generated|dffpipe_pe9:rs_bwp|dffe12a[9,10]                                                  ; Lost fanout                                                                                                                                                                                         ;
-; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|FIFO_16:FIFO_16_B|dcfifo:dcfifo_component|dcfifo_p1l1:auto_generated|dffpipe_pe9:rs_brp|dffe12a[9,10]                                                  ; Lost fanout                                                                                                                                                                                         ;
-; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|FIFO_16:FIFO_16_A|dcfifo:dcfifo_component|dcfifo_p1l1:auto_generated|dffpipe_pe9:rs_bwp|dffe12a[9,10]                                                  ; Lost fanout                                                                                                                                                                                         ;
-; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|FIFO_16:FIFO_16_A|dcfifo:dcfifo_component|dcfifo_p1l1:auto_generated|dffpipe_pe9:rs_brp|dffe12a[9,10]                                                  ; Lost fanout                                                                                                                                                                                         ;
-; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|ERROR_SOLVER:ERROR_SOLVER_inst|oRST_BLVDS_RECEIVER                                                                                                     ; Merged with BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|ERROR_SOLVER:ERROR_SOLVER_inst|rSCLR_CNT                                                                                                               ;
-; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|GPIO_SOLVER:GPIO_SOLVER_inst|rLATENCY_CNT[0..8]                                                                                                        ; Stuck at GND due to stuck port data_in                                                                                                                                                              ;
-; user_bcvs:user_bcvs_inst|oUser_data[16]                                                                                                                                                 ; Stuck at VCC due to stuck port data_in                                                                                                                                                              ;
-; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|BLVDS_RECEIVER:BLVDS_RECEIVER_inst|rPART_CNT[2]                                                                                                        ; Stuck at GND due to stuck port data_in                                                                                                                                                              ;
-; user_bcvs:user_bcvs_inst|state~4                                                                                                                                                        ; Lost fanout                                                                                                                                                                                         ;
-; user_bcvs:user_bcvs_inst|state~5                                                                                                                                                        ; Lost fanout                                                                                                                                                                                         ;
-; user_bcvs:user_bcvs_inst|state~6                                                                                                                                                        ; Lost fanout                                                                                                                                                                                         ;
-; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|GPIO_SOLVER:GPIO_SOLVER_inst|state~10                                                                                                                  ; Lost fanout                                                                                                                                                                                         ;
-; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|GPIO_SOLVER:GPIO_SOLVER_inst|state~11                                                                                                                  ; Lost fanout                                                                                                                                                                                         ;
-; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|GPIO_SOLVER:GPIO_SOLVER_inst|state~12                                                                                                                  ; Lost fanout                                                                                                                                                                                         ;
-; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|BLVDS_RECEIVER:BLVDS_RECEIVER_inst|state~10                                                                                                            ; Lost fanout                                                                                                                                                                                         ;
-; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|BLVDS_RECEIVER:BLVDS_RECEIVER_inst|state~11                                                                                                            ; Lost fanout                                                                                                                                                                                         ;
-; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|BLVDS_RECEIVER:BLVDS_RECEIVER_inst|state~12                                                                                                            ; Lost fanout                                                                                                                                                                                         ;
-; user_bcvs:user_bcvs_inst|rpack_crc[16,17]                                                                                                                                               ; Lost fanout                                                                                                                                                                                         ;
-; user_bcvs:user_bcvs_inst|rframe_crc[16,17]                                                                                                                                              ; Lost fanout                                                                                                                                                                                         ;
-; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|BLVDS_RECEIVER:BLVDS_RECEIVER_inst|rCALC_CRC[16,17]                                                                                                    ; Lost fanout                                                                                                                                                                                         ;
-; Total Number of Removed Registers = 84                                                                                                                                                  ;                                                                                                                                                                                                     ;
-; sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|segment_shift_clk_ena                                                       ; Merged with sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|buffer_write_enable_delayed                                                 ;
-; sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_buffer_manager:sld_buffer_manager_inst|\buffer_manager:offset_count[0]  ; Merged with sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_buffer_manager:sld_buffer_manager_inst|\buffer_manager:next_address[0]  ;
-; sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_buffer_manager:sld_buffer_manager_inst|\buffer_manager:offset_count[1]  ; Merged with sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_buffer_manager:sld_buffer_manager_inst|\buffer_manager:next_address[1]  ;
-; sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_buffer_manager:sld_buffer_manager_inst|\buffer_manager:offset_count[2]  ; Merged with sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_buffer_manager:sld_buffer_manager_inst|\buffer_manager:next_address[2]  ;
-; sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_buffer_manager:sld_buffer_manager_inst|\buffer_manager:offset_count[3]  ; Merged with sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_buffer_manager:sld_buffer_manager_inst|\buffer_manager:next_address[3]  ;
-; sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_buffer_manager:sld_buffer_manager_inst|\buffer_manager:offset_count[4]  ; Merged with sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_buffer_manager:sld_buffer_manager_inst|\buffer_manager:next_address[4]  ;
-; sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_buffer_manager:sld_buffer_manager_inst|\buffer_manager:offset_count[5]  ; Merged with sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_buffer_manager:sld_buffer_manager_inst|\buffer_manager:next_address[5]  ;
-; sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_buffer_manager:sld_buffer_manager_inst|\buffer_manager:offset_count[6]  ; Merged with sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_buffer_manager:sld_buffer_manager_inst|\buffer_manager:next_address[6]  ;
-; sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_buffer_manager:sld_buffer_manager_inst|\buffer_manager:offset_count[7]  ; Merged with sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_buffer_manager:sld_buffer_manager_inst|\buffer_manager:next_address[7]  ;
-; sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_buffer_manager:sld_buffer_manager_inst|\buffer_manager:offset_count[8]  ; Merged with sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_buffer_manager:sld_buffer_manager_inst|\buffer_manager:next_address[8]  ;
-; sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_buffer_manager:sld_buffer_manager_inst|\buffer_manager:offset_count[9]  ; Merged with sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_buffer_manager:sld_buffer_manager_inst|\buffer_manager:next_address[9]  ;
-; sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_buffer_manager:sld_buffer_manager_inst|\buffer_manager:offset_count[10] ; Merged with sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_buffer_manager:sld_buffer_manager_inst|\buffer_manager:next_address[10] ;
-; sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_buffer_manager:sld_buffer_manager_inst|\buffer_manager:offset_count[11] ; Merged with sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_buffer_manager:sld_buffer_manager_inst|\buffer_manager:next_address[11] ;
-; sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|current_offset_delayed[0]                                                   ; Merged with sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|buffer_write_address_delayed[0]                                             ;
-; sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|current_offset_delayed[1]                                                   ; Merged with sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|buffer_write_address_delayed[1]                                             ;
-; sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|current_offset_delayed[2]                                                   ; Merged with sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|buffer_write_address_delayed[2]                                             ;
-; sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|current_offset_delayed[3]                                                   ; Merged with sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|buffer_write_address_delayed[3]                                             ;
-; sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|current_offset_delayed[4]                                                   ; Merged with sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|buffer_write_address_delayed[4]                                             ;
-; sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|current_offset_delayed[5]                                                   ; Merged with sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|buffer_write_address_delayed[5]                                             ;
-; sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|current_offset_delayed[6]                                                   ; Merged with sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|buffer_write_address_delayed[6]                                             ;
-; sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|current_offset_delayed[7]                                                   ; Merged with sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|buffer_write_address_delayed[7]                                             ;
-; sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|current_offset_delayed[8]                                                   ; Merged with sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|buffer_write_address_delayed[8]                                             ;
-; sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|current_offset_delayed[9]                                                   ; Merged with sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|buffer_write_address_delayed[9]                                             ;
-; sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|current_offset_delayed[10]                                                  ; Merged with sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|buffer_write_address_delayed[10]                                            ;
-; sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|current_offset_delayed[11]                                                  ; Merged with sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|buffer_write_address_delayed[11]                                            ;
-; sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|serial_crc_16:\tdo_crc_gen:tdo_crc_calc|lfsr[13..15]                        ; Stuck at GND due to stuck port data_in                                                                                                                                                              ;
-; Total Number of Removed Registers = 28                                                                                                                                                  ;                                                                                                                                                                                                     ;
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                                                                                                                             ;
++----------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------+
+; Register name                                                                                                                          ; Reason for Removal                                                                    ;
++----------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------+
+; user_bcvs:user_bcvs_inst|rnum_pack[2..7]                                                                                               ; Stuck at GND due to stuck port data_in                                                ;
+; user_bcvs:user_bcvs_inst|rnum_pack[1]                                                                                                  ; Stuck at VCC due to stuck port data_in                                                ;
+; user_bcvs:user_bcvs_inst|rnum_pack[0]                                                                                                  ; Stuck at GND due to stuck port data_in                                                ;
+; user_bcvs:user_bcvs_inst|num_sample[10..15]                                                                                            ; Stuck at GND due to stuck port data_in                                                ;
+; user_bcvs:user_bcvs_inst|num_sample[9]                                                                                                 ; Stuck at VCC due to stuck port data_in                                                ;
+; user_bcvs:user_bcvs_inst|num_sample[0..8]                                                                                              ; Stuck at GND due to stuck port data_in                                                ;
+; user_bcvs:user_bcvs_inst|rnum_sample[10..15]                                                                                           ; Stuck at GND due to stuck port data_in                                                ;
+; user_bcvs:user_bcvs_inst|rnum_sample[9]                                                                                                ; Stuck at VCC due to stuck port data_in                                                ;
+; user_bcvs:user_bcvs_inst|rnum_sample[0..8]                                                                                             ; Stuck at GND due to stuck port data_in                                                ;
+; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|GPIO_SOLVER:GPIO_SOLVER_inst|rLATENCY[1..8]                                                           ; Stuck at GND due to stuck port data_in                                                ;
+; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|GPIO_SOLVER:GPIO_SOLVER_inst|rLATENCY[0]                                                              ; Stuck at VCC due to stuck port data_in                                                ;
+; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|FIFO_16:FIFO_16_B|dcfifo:dcfifo_component|dcfifo_p1l1:auto_generated|dffpipe_pe9:rs_bwp|dffe12a[9,10] ; Lost fanout                                                                           ;
+; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|FIFO_16:FIFO_16_B|dcfifo:dcfifo_component|dcfifo_p1l1:auto_generated|dffpipe_pe9:rs_brp|dffe12a[9,10] ; Lost fanout                                                                           ;
+; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|FIFO_16:FIFO_16_A|dcfifo:dcfifo_component|dcfifo_p1l1:auto_generated|dffpipe_pe9:rs_bwp|dffe12a[9,10] ; Lost fanout                                                                           ;
+; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|FIFO_16:FIFO_16_A|dcfifo:dcfifo_component|dcfifo_p1l1:auto_generated|dffpipe_pe9:rs_brp|dffe12a[9,10] ; Lost fanout                                                                           ;
+; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|ERROR_SOLVER:ERROR_SOLVER_inst|oRST_BLVDS_RECEIVER                                                    ; Merged with BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|ERROR_SOLVER:ERROR_SOLVER_inst|rSCLR_CNT ;
+; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|GPIO_SOLVER:GPIO_SOLVER_inst|rLATENCY_CNT[0..8]                                                       ; Stuck at GND due to stuck port data_in                                                ;
+; user_bcvs:user_bcvs_inst|oUser_data[16]                                                                                                ; Stuck at VCC due to stuck port data_in                                                ;
+; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|BLVDS_RECEIVER:BLVDS_RECEIVER_inst|rPART_CNT[2]                                                       ; Stuck at GND due to stuck port data_in                                                ;
+; user_bcvs:user_bcvs_inst|state~4                                                                                                       ; Lost fanout                                                                           ;
+; user_bcvs:user_bcvs_inst|state~5                                                                                                       ; Lost fanout                                                                           ;
+; user_bcvs:user_bcvs_inst|state~6                                                                                                       ; Lost fanout                                                                           ;
+; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|GPIO_SOLVER:GPIO_SOLVER_inst|state~10                                                                 ; Lost fanout                                                                           ;
+; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|GPIO_SOLVER:GPIO_SOLVER_inst|state~11                                                                 ; Lost fanout                                                                           ;
+; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|GPIO_SOLVER:GPIO_SOLVER_inst|state~12                                                                 ; Lost fanout                                                                           ;
+; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|BLVDS_RECEIVER:BLVDS_RECEIVER_inst|state~10                                                           ; Lost fanout                                                                           ;
+; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|BLVDS_RECEIVER:BLVDS_RECEIVER_inst|state~11                                                           ; Lost fanout                                                                           ;
+; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|BLVDS_RECEIVER:BLVDS_RECEIVER_inst|state~12                                                           ; Lost fanout                                                                           ;
+; user_bcvs:user_bcvs_inst|rpack_crc[16,17]                                                                                              ; Lost fanout                                                                           ;
+; user_bcvs:user_bcvs_inst|rframe_crc[16,17]                                                                                             ; Lost fanout                                                                           ;
+; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|BLVDS_RECEIVER:BLVDS_RECEIVER_inst|rCALC_CRC[16,17]                                                   ; Lost fanout                                                                           ;
+; Total Number of Removed Registers = 84                                                                                                 ;                                                                                       ;
++----------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Removed Registers Triggering Further Register Optimizations                                                                                                                                                                                                                                                                                              ;
-+--------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Register name                                                                                                                                                ; Reason for Removal        ; Registers Removed due to This Register                                                                                                                        ;
-+--------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|GPIO_SOLVER:GPIO_SOLVER_inst|rLATENCY[8]                                                                                    ; Stuck at GND              ; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|GPIO_SOLVER:GPIO_SOLVER_inst|rLATENCY_CNT[8],                                                                                ;
-;                                                                                                                                                              ; due to stuck port data_in ; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|GPIO_SOLVER:GPIO_SOLVER_inst|rLATENCY_CNT[7],                                                                                ;
-;                                                                                                                                                              ;                           ; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|GPIO_SOLVER:GPIO_SOLVER_inst|rLATENCY_CNT[6],                                                                                ;
-;                                                                                                                                                              ;                           ; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|GPIO_SOLVER:GPIO_SOLVER_inst|rLATENCY_CNT[5],                                                                                ;
-;                                                                                                                                                              ;                           ; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|GPIO_SOLVER:GPIO_SOLVER_inst|rLATENCY_CNT[4],                                                                                ;
-;                                                                                                                                                              ;                           ; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|GPIO_SOLVER:GPIO_SOLVER_inst|rLATENCY_CNT[3],                                                                                ;
-;                                                                                                                                                              ;                           ; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|GPIO_SOLVER:GPIO_SOLVER_inst|rLATENCY_CNT[2],                                                                                ;
-;                                                                                                                                                              ;                           ; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|GPIO_SOLVER:GPIO_SOLVER_inst|rLATENCY_CNT[1],                                                                                ;
-;                                                                                                                                                              ;                           ; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|GPIO_SOLVER:GPIO_SOLVER_inst|rLATENCY_CNT[0]                                                                                 ;
-; user_bcvs:user_bcvs_inst|rpack_crc[17]                                                                                                                       ; Lost Fanouts              ; user_bcvs:user_bcvs_inst|rpack_crc[16]                                                                                                                        ;
-; user_bcvs:user_bcvs_inst|rframe_crc[17]                                                                                                                      ; Lost Fanouts              ; user_bcvs:user_bcvs_inst|rframe_crc[16]                                                                                                                       ;
-; sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|serial_crc_16:\tdo_crc_gen:tdo_crc_calc|lfsr[15] ; Stuck at GND              ; sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|serial_crc_16:\tdo_crc_gen:tdo_crc_calc|lfsr[14], ;
-;                                                                                                                                                              ; due to stuck port data_in ; sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|serial_crc_16:\tdo_crc_gen:tdo_crc_calc|lfsr[13]  ;
-+--------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                                                                            ;
++---------------------------------------------------------------------------+---------------------------+--------------------------------------------------------------------------------+
+; Register name                                                             ; Reason for Removal        ; Registers Removed due to This Register                                         ;
++---------------------------------------------------------------------------+---------------------------+--------------------------------------------------------------------------------+
+; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|GPIO_SOLVER:GPIO_SOLVER_inst|rLATENCY[8] ; Stuck at GND              ; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|GPIO_SOLVER:GPIO_SOLVER_inst|rLATENCY_CNT[8], ;
+;                                                                           ; due to stuck port data_in ; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|GPIO_SOLVER:GPIO_SOLVER_inst|rLATENCY_CNT[7], ;
+;                                                                           ;                           ; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|GPIO_SOLVER:GPIO_SOLVER_inst|rLATENCY_CNT[6], ;
+;                                                                           ;                           ; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|GPIO_SOLVER:GPIO_SOLVER_inst|rLATENCY_CNT[5], ;
+;                                                                           ;                           ; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|GPIO_SOLVER:GPIO_SOLVER_inst|rLATENCY_CNT[4], ;
+;                                                                           ;                           ; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|GPIO_SOLVER:GPIO_SOLVER_inst|rLATENCY_CNT[3], ;
+;                                                                           ;                           ; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|GPIO_SOLVER:GPIO_SOLVER_inst|rLATENCY_CNT[2], ;
+;                                                                           ;                           ; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|GPIO_SOLVER:GPIO_SOLVER_inst|rLATENCY_CNT[1], ;
+;                                                                           ;                           ; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|GPIO_SOLVER:GPIO_SOLVER_inst|rLATENCY_CNT[0]  ;
+; user_bcvs:user_bcvs_inst|rpack_crc[17]                                    ; Lost Fanouts              ; user_bcvs:user_bcvs_inst|rpack_crc[16]                                         ;
+; user_bcvs:user_bcvs_inst|rframe_crc[17]                                   ; Lost Fanouts              ; user_bcvs:user_bcvs_inst|rframe_crc[16]                                        ;
++---------------------------------------------------------------------------+---------------------------+--------------------------------------------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -877,7 +846,7 @@ Encoding Type: Safe One-Hot
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
 ; Total registers                              ; 2243  ;
-; Number of registers using Synchronous Clear  ; 227   ;
+; Number of registers using Synchronous Clear  ; 235   ;
 ; Number of registers using Synchronous Load   ; 140   ;
 ; Number of registers using Asynchronous Clear ; 923   ;
 ; Number of registers using Asynchronous Load  ; 0     ;
@@ -895,14 +864,14 @@ Encoding Type: Safe One-Hot
 ; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|FIFO_16:FIFO_16_A|dcfifo:dcfifo_component|dcfifo_p1l1:auto_generated|rdemp_eq_comp_msb_aeb                                                                                                                                                                                                     ; 3       ;
 ; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|FIFO_16:FIFO_16_B|dcfifo:dcfifo_component|dcfifo_p1l1:auto_generated|rdemp_eq_comp_lsb_aeb                                                                                                                                                                                                     ; 2       ;
 ; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|FIFO_16:FIFO_16_B|dcfifo:dcfifo_component|dcfifo_p1l1:auto_generated|rdemp_eq_comp_msb_aeb                                                                                                                                                                                                     ; 2       ;
-; user_bcvs:user_bcvs_inst|oUser_data[17]                                                                                                                                                                                                                                                                                         ; 12      ;
-; user_bcvs:user_bcvs_inst|oUser_data[14]                                                                                                                                                                                                                                                                                         ; 11      ;
-; user_bcvs:user_bcvs_inst|oUser_data[13]                                                                                                                                                                                                                                                                                         ; 8       ;
-; user_bcvs:user_bcvs_inst|oUser_data[15]                                                                                                                                                                                                                                                                                         ; 8       ;
+; user_bcvs:user_bcvs_inst|oUser_data[15]                                                                                                                                                                                                                                                                                         ; 9       ;
+; user_bcvs:user_bcvs_inst|oUser_data[13]                                                                                                                                                                                                                                                                                         ; 11      ;
+; user_bcvs:user_bcvs_inst|oUser_data[14]                                                                                                                                                                                                                                                                                         ; 13      ;
 ; user_bcvs:user_bcvs_inst|oUser_data[12]                                                                                                                                                                                                                                                                                         ; 4       ;
 ; user_bcvs:user_bcvs_inst|oUser_data[11]                                                                                                                                                                                                                                                                                         ; 5       ;
 ; user_bcvs:user_bcvs_inst|oUser_data[10]                                                                                                                                                                                                                                                                                         ; 4       ;
 ; user_bcvs:user_bcvs_inst|oUser_data[9]                                                                                                                                                                                                                                                                                          ; 5       ;
+; user_bcvs:user_bcvs_inst|oUser_data[17]                                                                                                                                                                                                                                                                                         ; 8       ;
 ; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|FIFO_16:FIFO_16_A|dcfifo:dcfifo_component|dcfifo_p1l1:auto_generated|a_graycounter_677:rdptr_g1p|counter5a0                                                                                                                                                                                    ; 8       ;
 ; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|FIFO_16:FIFO_16_A|dcfifo:dcfifo_component|dcfifo_p1l1:auto_generated|a_graycounter_2lc:wrptr_g1p|counter8a0                                                                                                                                                                                    ; 7       ;
 ; BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|FIFO_16:FIFO_16_B|dcfifo:dcfifo_component|dcfifo_p1l1:auto_generated|a_graycounter_677:rdptr_g1p|counter5a0                                                                                                                                                                                    ; 8       ;
@@ -931,46 +900,32 @@ Encoding Type: Safe One-Hot
 +---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                                                                                                                                                                                                                                                                                                         ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                                                                                                                                                                                                                                                                                                               ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; 3:1                ; 9 bits    ; 18 LEs        ; 9 LEs                ; 9 LEs                  ; Yes        ; |SIMULATION_TOP|BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|GPIO_SOLVER:GPIO_SOLVER_inst|rGPIO0_CNT[8]                                                                                                                                                                                                                                                                              ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |SIMULATION_TOP|BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|BLVDS_RECEIVER:BLVDS_RECEIVER_inst|rFRAME_DELAY[6]                                                                                                                                                                                                                                                                      ;
-; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |SIMULATION_TOP|BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|BLVDS_RECEIVER:BLVDS_RECEIVER_inst|rWRFULL_CNT[4]                                                                                                                                                                                                                                                                       ;
-; 3:1                ; 9 bits    ; 18 LEs        ; 9 LEs                ; 9 LEs                  ; Yes        ; |SIMULATION_TOP|gpio5_sim:gpio5_sim_inst|rCNT_L[2]                                                                                                                                                                                                                                                                                                                       ;
-; 3:1                ; 9 bits    ; 18 LEs        ; 9 LEs                ; 9 LEs                  ; Yes        ; |SIMULATION_TOP|gpio5_sim:gpio5_sim_inst|rCNT_H[2]                                                                                                                                                                                                                                                                                                                       ;
-; 5:1                ; 8 bits    ; 24 LEs        ; 8 LEs                ; 16 LEs                 ; Yes        ; |SIMULATION_TOP|BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|BLVDS_RECEIVER:BLVDS_RECEIVER_inst|rPACK_COUNT[0]                                                                                                                                                                                                                                                                       ;
-; 6:1                ; 9 bits    ; 36 LEs        ; 9 LEs                ; 27 LEs                 ; Yes        ; |SIMULATION_TOP|BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|GPIO_SOLVER:GPIO_SOLVER_inst|rWORD_CNT[0]                                                                                                                                                                                                                                                                               ;
-; 6:1                ; 16 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |SIMULATION_TOP|BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|GPIO_SOLVER:GPIO_SOLVER_inst|oDATA_UPP[15]                                                                                                                                                                                                                                                                              ;
-; 13:1               ; 15 bits   ; 120 LEs       ; 45 LEs               ; 75 LEs                 ; Yes        ; |SIMULATION_TOP|BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|BLVDS_RECEIVER:BLVDS_RECEIVER_inst|oDATA_BLVDS[4]                                                                                                                                                                                                                                                                       ;
-; 5:1                ; 10 bits   ; 30 LEs        ; 10 LEs               ; 20 LEs                 ; Yes        ; |SIMULATION_TOP|user_bcvs:user_bcvs_inst|part_cnt[9]                                                                                                                                                                                                                                                                                                                     ;
-; 10:1               ; 18 bits   ; 108 LEs       ; 18 LEs               ; 90 LEs                 ; Yes        ; |SIMULATION_TOP|BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|BLVDS_RECEIVER:BLVDS_RECEIVER_inst|rCALC_CRC[0]                                                                                                                                                                                                                                                                         ;
-; 11:1               ; 6 bits    ; 42 LEs        ; 36 LEs               ; 6 LEs                  ; Yes        ; |SIMULATION_TOP|user_bcvs:user_bcvs_inst|oUser_data[7]                                                                                                                                                                                                                                                                                                                   ;
-; 13:1               ; 16 bits   ; 128 LEs       ; 32 LEs               ; 96 LEs                 ; Yes        ; |SIMULATION_TOP|BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|BLVDS_RECEIVER:BLVDS_RECEIVER_inst|rSERVICE_CNT[12]                                                                                                                                                                                                                                                                     ;
-; 14:1               ; 12 bits   ; 108 LEs       ; 48 LEs               ; 60 LEs                 ; Yes        ; |SIMULATION_TOP|user_bcvs:user_bcvs_inst|rpack_crc[4]                                                                                                                                                                                                                                                                                                                    ;
-; 14:1               ; 5 bits    ; 45 LEs        ; 20 LEs               ; 25 LEs                 ; Yes        ; |SIMULATION_TOP|user_bcvs:user_bcvs_inst|rpack_crc[13]                                                                                                                                                                                                                                                                                                                   ;
-; 18:1               ; 12 bits   ; 144 LEs       ; 84 LEs               ; 60 LEs                 ; Yes        ; |SIMULATION_TOP|user_bcvs:user_bcvs_inst|rframe_crc[9]                                                                                                                                                                                                                                                                                                                   ;
-; 18:1               ; 5 bits    ; 60 LEs        ; 40 LEs               ; 20 LEs                 ; Yes        ; |SIMULATION_TOP|user_bcvs:user_bcvs_inst|rframe_crc[13]                                                                                                                                                                                                                                                                                                                  ;
-; 9:1                ; 2 bits    ; 12 LEs        ; 10 LEs               ; 2 LEs                  ; Yes        ; |SIMULATION_TOP|user_bcvs:user_bcvs_inst|oUser_data[12]                                                                                                                                                                                                                                                                                                                  ;
-; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |SIMULATION_TOP|BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|GPIO_SOLVER:GPIO_SOLVER_inst|state                                                                                                                                                                                                                                                                                      ;
-; 7:1                ; 2 bits    ; 8 LEs         ; 2 LEs                ; 6 LEs                  ; No         ; |SIMULATION_TOP|user_bcvs:user_bcvs_inst|state                                                                                                                                                                                                                                                                                                                           ;
-; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |SIMULATION_TOP|sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|tdo_crc_val_shift_reg[13]                                                                                                                                                                                                                    ;
-; 3:1                ; 13 bits   ; 26 LEs        ; 13 LEs               ; 13 LEs                 ; Yes        ; |SIMULATION_TOP|sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|tdo_crc_val_shift_reg[5]                                                                                                                                                                                                                     ;
-; 3:1                ; 13 bits   ; 26 LEs        ; 13 LEs               ; 13 LEs                 ; Yes        ; |SIMULATION_TOP|sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|serial_crc_16:\tdo_crc_gen:tdo_crc_calc|lfsr[6]                                                                                                                                                                                              ;
-; 4:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; Yes        ; |SIMULATION_TOP|sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|tdo_crc_len_reg[4]                                                                                                                                                                                                                           ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |SIMULATION_TOP|sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_rom_sr:crc_rom_sr|word_counter[3]                                                                                                                                                                                                        ;
-; 4:1                ; 13 bits   ; 26 LEs        ; 26 LEs               ; 0 LEs                  ; Yes        ; |SIMULATION_TOP|sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_buffer_manager:sld_buffer_manager_inst|counter[3]                                                                                                                                                                                        ;
-; 12:1               ; 4 bits    ; 32 LEs        ; 24 LEs               ; 8 LEs                  ; Yes        ; |SIMULATION_TOP|sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_rom_sr:crc_rom_sr|WORD_SR[3]                                                                                                                                                                                                             ;
-; 3:1                ; 12 bits   ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; No         ; |SIMULATION_TOP|sld_signaltap:auto_signaltap_1|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|sld_buffer_manager:sld_buffer_manager_inst|offset_count                                                                                                                                                                                      ;
-; 3:1                ; 9 bits    ; 18 LEs        ; 9 LEs                ; 9 LEs                  ; Yes        ; |SIMULATION_TOP|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub|irsr_reg[0]                             ;
-; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |SIMULATION_TOP|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub|hub_minor_ver_reg[1]                    ;
-; 4:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |SIMULATION_TOP|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub|sld_rom_sr:hub_info_reg|word_counter[0] ;
-; 4:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |SIMULATION_TOP|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub|mixer_addr_reg_internal[4]              ;
-; 34:1               ; 4 bits    ; 88 LEs        ; 64 LEs               ; 24 LEs                 ; Yes        ; |SIMULATION_TOP|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub|design_hash_reg[0]                      ;
-; 20:1               ; 4 bits    ; 52 LEs        ; 32 LEs               ; 20 LEs                 ; Yes        ; |SIMULATION_TOP|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub|sld_rom_sr:hub_info_reg|WORD_SR[0]      ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                                     ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                                           ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------------------------------------+
+; 3:1                ; 9 bits    ; 18 LEs        ; 9 LEs                ; 9 LEs                  ; Yes        ; |SIMULATION_TOP|BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|GPIO_SOLVER:GPIO_SOLVER_inst|rGPIO0_CNT[3]          ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |SIMULATION_TOP|BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|BLVDS_RECEIVER:BLVDS_RECEIVER_inst|rFRAME_DELAY[4]  ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; Yes        ; |SIMULATION_TOP|BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|BLVDS_RECEIVER:BLVDS_RECEIVER_inst|rWRFULL_CNT[4]   ;
+; 3:1                ; 9 bits    ; 18 LEs        ; 9 LEs                ; 9 LEs                  ; Yes        ; |SIMULATION_TOP|gpio5_sim:gpio5_sim_inst|rCNT_L[0]                                                   ;
+; 3:1                ; 9 bits    ; 18 LEs        ; 9 LEs                ; 9 LEs                  ; Yes        ; |SIMULATION_TOP|gpio5_sim:gpio5_sim_inst|rCNT_H[7]                                                   ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 8 LEs                ; 16 LEs                 ; Yes        ; |SIMULATION_TOP|BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|BLVDS_RECEIVER:BLVDS_RECEIVER_inst|rPACK_COUNT[2]   ;
+; 6:1                ; 9 bits    ; 36 LEs        ; 9 LEs                ; 27 LEs                 ; Yes        ; |SIMULATION_TOP|BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|GPIO_SOLVER:GPIO_SOLVER_inst|rWORD_CNT[0]           ;
+; 6:1                ; 16 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |SIMULATION_TOP|BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|GPIO_SOLVER:GPIO_SOLVER_inst|oDATA_UPP[5]           ;
+; 5:1                ; 10 bits   ; 30 LEs        ; 10 LEs               ; 20 LEs                 ; Yes        ; |SIMULATION_TOP|user_bcvs:user_bcvs_inst|part_cnt[5]                                                 ;
+; 14:1               ; 15 bits   ; 135 LEs       ; 45 LEs               ; 90 LEs                 ; Yes        ; |SIMULATION_TOP|BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|BLVDS_RECEIVER:BLVDS_RECEIVER_inst|oDATA_BLVDS[14]  ;
+; 10:1               ; 18 bits   ; 108 LEs       ; 18 LEs               ; 90 LEs                 ; Yes        ; |SIMULATION_TOP|BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|BLVDS_RECEIVER:BLVDS_RECEIVER_inst|rCALC_CRC[3]     ;
+; 11:1               ; 6 bits    ; 42 LEs        ; 36 LEs               ; 6 LEs                  ; Yes        ; |SIMULATION_TOP|user_bcvs:user_bcvs_inst|oUser_data[6]                                               ;
+; 12:1               ; 16 bits   ; 128 LEs       ; 64 LEs               ; 64 LEs                 ; Yes        ; |SIMULATION_TOP|BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|BLVDS_RECEIVER:BLVDS_RECEIVER_inst|rSERVICE_CNT[10] ;
+; 14:1               ; 12 bits   ; 108 LEs       ; 48 LEs               ; 60 LEs                 ; Yes        ; |SIMULATION_TOP|user_bcvs:user_bcvs_inst|rpack_crc[4]                                                ;
+; 14:1               ; 5 bits    ; 45 LEs        ; 20 LEs               ; 25 LEs                 ; Yes        ; |SIMULATION_TOP|user_bcvs:user_bcvs_inst|rpack_crc[15]                                               ;
+; 18:1               ; 12 bits   ; 144 LEs       ; 84 LEs               ; 60 LEs                 ; Yes        ; |SIMULATION_TOP|user_bcvs:user_bcvs_inst|rframe_crc[5]                                               ;
+; 18:1               ; 5 bits    ; 60 LEs        ; 40 LEs               ; 20 LEs                 ; Yes        ; |SIMULATION_TOP|user_bcvs:user_bcvs_inst|rframe_crc[13]                                              ;
+; 9:1                ; 2 bits    ; 12 LEs        ; 10 LEs               ; 2 LEs                  ; Yes        ; |SIMULATION_TOP|user_bcvs:user_bcvs_inst|oUser_data[10]                                              ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |SIMULATION_TOP|BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|GPIO_SOLVER:GPIO_SOLVER_inst|state                  ;
+; 7:1                ; 2 bits    ; 8 LEs         ; 2 LEs                ; 6 LEs                  ; No         ; |SIMULATION_TOP|user_bcvs:user_bcvs_inst|state                                                       ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------------------------------------+
 
 
 +---------------------------------------------------------------------------------------------------+
@@ -2063,98 +2018,35 @@ Note: In order to hide this table in the UI and the text report file, please set
 ;     ENA CLR           ; 119                         ;
 ;     ENA CLR SCLR      ; 40                          ;
 ;     ENA SCLR          ; 76                          ;
-;     ENA SCLR SLD      ; 7                           ;
-;     ENA SLD           ; 62                          ;
+;     ENA SCLR SLD      ; 15                          ;
+;     ENA SLD           ; 54                          ;
 ;     SCLR              ; 56                          ;
 ;     plain             ; 59                          ;
-; cycloneiii_lcell_comb ; 1270                        ;
+; cycloneiii_lcell_comb ; 1278                        ;
 ;     arith             ; 466                         ;
 ;         2 data inputs ; 350                         ;
 ;         3 data inputs ; 116                         ;
-;     normal            ; 804                         ;
+;     normal            ; 812                         ;
 ;         0 data inputs ; 1                           ;
 ;         1 data inputs ; 50                          ;
-;         2 data inputs ; 103                         ;
-;         3 data inputs ; 141                         ;
-;         4 data inputs ; 509                         ;
+;         2 data inputs ; 101                         ;
+;         3 data inputs ; 134                         ;
+;         4 data inputs ; 526                         ;
 ; cycloneiii_pll        ; 1                           ;
 ; cycloneiii_ram_block  ; 32                          ;
 ;                       ;                             ;
 ; Max LUT depth         ; 8.00                        ;
-; Average LUT depth     ; 3.52                        ;
+; Average LUT depth     ; 3.53                        ;
 +-----------------------+-----------------------------+
 
 
-+--------------------------------------------------------------------------------+
-; Post-Synthesis Netlist Statistics for Partition sld_signaltap:auto_signaltap_1 ;
-+-----------------------+--------------------------------------------------------+
-; Type                  ; Count                                                  ;
-+-----------------------+--------------------------------------------------------+
-; boundary_port         ; 533                                                    ;
-; cycloneiii_ff         ; 1450                                                   ;
-;     CLR               ; 144                                                    ;
-;     ENA               ; 138                                                    ;
-;     ENA CLR           ; 352                                                    ;
-;     ENA SCLR SLD      ; 36                                                     ;
-;     ENA SLD           ; 13                                                     ;
-;     SLD               ; 12                                                     ;
-;     plain             ; 755                                                    ;
-; cycloneiii_lcell_comb ; 664                                                    ;
-;     arith             ; 89                                                     ;
-;         2 data inputs ; 88                                                     ;
-;         3 data inputs ; 1                                                      ;
-;     normal            ; 575                                                    ;
-;         0 data inputs ; 6                                                      ;
-;         1 data inputs ; 5                                                      ;
-;         2 data inputs ; 35                                                     ;
-;         3 data inputs ; 202                                                    ;
-;         4 data inputs ; 327                                                    ;
-; cycloneiii_ram_block  ; 90                                                     ;
-;                       ;                                                        ;
-; Max LUT depth         ; 5.10                                                   ;
-; Average LUT depth     ; 1.68                                                   ;
-+-----------------------+--------------------------------------------------------+
-
-
-+------------------------------------------------------------------+
-; Post-Synthesis Netlist Statistics for Partition sld_hub:auto_hub ;
-+-----------------------+------------------------------------------+
-; Type                  ; Count                                    ;
-+-----------------------+------------------------------------------+
-; boundary_port         ; 107                                      ;
-; cycloneiii_ff         ; 90                                       ;
-;     CLR               ; 5                                        ;
-;     ENA               ; 16                                       ;
-;     ENA CLR           ; 31                                       ;
-;     ENA CLR SLD       ; 1                                        ;
-;     ENA SCLR          ; 5                                        ;
-;     ENA SLD           ; 9                                        ;
-;     SCLR              ; 7                                        ;
-;     plain             ; 16                                       ;
-; cycloneiii_lcell_comb ; 126                                      ;
-;     arith             ; 8                                        ;
-;         2 data inputs ; 8                                        ;
-;     normal            ; 118                                      ;
-;         0 data inputs ; 1                                        ;
-;         1 data inputs ; 6                                        ;
-;         2 data inputs ; 22                                       ;
-;         3 data inputs ; 34                                       ;
-;         4 data inputs ; 55                                       ;
-;                       ;                                          ;
-; Max LUT depth         ; 4.00                                     ;
-; Average LUT depth     ; 1.85                                     ;
-+-----------------------+------------------------------------------+
-
-
-+-----------------------------------------------+
-; Elapsed Time Per Partition                    ;
-+--------------------------------+--------------+
-; Partition Name                 ; Elapsed Time ;
-+--------------------------------+--------------+
-; sld_signaltap:auto_signaltap_1 ; 00:00:03     ;
-; Top                            ; 00:00:04     ;
-; sld_hub:auto_hub               ; 00:00:01     ;
-+--------------------------------+--------------+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:03     ;
++----------------+--------------+
 
 
 +----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -2384,7 +2276,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 16.0.0 Build 211 04/27/2016 SJ Standard Edition
-    Info: Processing started: Thu Apr 02 10:53:01 2020
+    Info: Processing started: Thu Apr 02 13:14:31 2020
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off test_sf -c test_sf
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 8 of the 8 processors detected
@@ -2601,7 +2493,7 @@ Info (12021): Found 1 design units, including 1 entities, in source file db/cmpr
     Info (12023): Found entity 1: cmpr_ngc File: D:/work/test_sf/db/cmpr_ngc.tdf Line: 23
 Info (12033): Analysis and Synthesis generated SignalTap II or debug node instance "auto_signaltap_1"
 Info (11170): Start IP generation for the debug fabric within sld_hub.
-Info (11172): 2020.04.02.11:53:31 Progress: Loading slde5f8a4d9/alt_sld_fab_wrapper_hw.tcl
+Info (11172): 2020.04.02.14:14:57 Progress: Loading slde5f8a4d9/alt_sld_fab_wrapper_hw.tcl
 Info (11172): Alt_sld_fab.alt_sld_fab: SLD fabric agents which did not specify prefer_host were connected to JTAG
 Info (11172): Alt_sld_fab: Generating alt_sld_fab "alt_sld_fab" for QUARTUS_SYNTH
 Info (11172): Alt_sld_fab: "alt_sld_fab" instantiated alt_sld_fab "alt_sld_fab"
@@ -2631,12 +2523,6 @@ Info (13000): Registers with preset signals will power-up high File: D:/work/tes
 Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
 Info (286031): Timing-Driven Synthesis is running on partition "Top"
 Info (17049): 23 registers lost all their fanouts during netlist optimizations.
-Info (13000): Registers with preset signals will power-up high File: g:/altera/16.0/quartus/libraries/megafunctions/sld_buffer_manager.vhd Line: 356
-Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
-Info (286031): Timing-Driven Synthesis is running on partition "sld_signaltap:auto_signaltap_1"
-Info (13000): Registers with preset signals will power-up high File: g:/altera/16.0/quartus/libraries/megafunctions/sld_jtag_hub.vhd Line: 373
-Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
-Info (286031): Timing-Driven Synthesis is running on partition "sld_hub:auto_hub"
 Info (144001): Generated suppressed messages file D:/work/test_sf/output_files/test_sf.map.smsg
 Info (35024): Successfully connected in-system debug instance "auto_signaltap_1" to all 213 required data inputs, trigger inputs, acquisition clocks, and dynamic pins
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
@@ -2663,107 +2549,107 @@ Info (15717): Design contains 20 virtual pins; timing numbers associated with pa
     Info (15719): Pin "oC3_70MHZ_PS" is virtual output pin File: D:/work/test_sf/BLVDS_uPP/SIMULATION_TOP.v Line: 6
     Info (15719): Pin "oENA" is virtual output pin File: D:/work/test_sf/BLVDS_uPP/SIMULATION_TOP.v Line: 8
 Warning (15752): Ignored 90 Virtual Pin logic option assignments
-    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[13]".
-    Warning (15751): Ignored Virtual Pin assignment to "oFIFO_OUT[4]".
+    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS[13]".
+    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[18]".
+    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS[15]".
     Warning (15751): Ignored Virtual Pin assignment to "oFIFO_OUT[11]".
-    Warning (15751): Ignored Virtual Pin assignment to "oFIFO_OUT[1]".
-    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS[2]".
+    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[20]".
     Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS[17]".
-    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS_sig[10]".
-    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS_sig[12]".
-    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS_sig[14]".
-    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS[5]".
-    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[0]".
-    Warning (15751): Ignored Virtual Pin assignment to "oFIFO_OUT[14]".
+    Warning (15751): Ignored Virtual Pin assignment to "oFIFO_OUT[13]".
+    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[22]".
+    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[30]".
+    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS_sig[4]".
+    Warning (15751): Ignored Virtual Pin assignment to "oFIFO_OUT[15]".
+    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[24]".
+    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS[0]".
+    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS_sig[6]".
     Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[1]".
-    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS[9]".
-    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[2]".
-    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS[10]".
-    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS_sig[3]".
-    Warning (15751): Ignored Virtual Pin assignment to "c3_140MHz".
+    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS_sig[8]".
+    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[3]".
+    Warning (15751): Ignored Virtual Pin assignment to "oGPIO_0".
+    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS_sig[10]".
+    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[5]".
     Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[7]".
+    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS[16]".
+    Warning (15751): Ignored Virtual Pin assignment to "oFIFO_OUT[12]".
+    Warning (15751): Ignored Virtual Pin assignment to "iGPIO_5".
+    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[29]".
+    Warning (15751): Ignored Virtual Pin assignment to "oFIFO_OUT[14]".
+    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[25]".
+    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[31]".
+    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS[1]".
+    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[27]".
+    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[2]".
+    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS_sig[11]".
+    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[4]".
+    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS_sig[13]".
+    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[6]".
+    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS_sig[15]".
+    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[8]".
+    Warning (15751): Ignored Virtual Pin assignment to "oFIFO_OUT[1]".
+    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[26]".
+    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS[2]".
+    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[28]".
+    Warning (15751): Ignored Virtual Pin assignment to "c3_70MHz_ps".
+    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS[4]".
+    Warning (15751): Ignored Virtual Pin assignment to "oERROR_SERV_sig".
+    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS[6]".
+    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS_sig[12]".
+    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS[8]".
+    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS_sig[14]".
+    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[9]".
+    Warning (15751): Ignored Virtual Pin assignment to "oFIFO_OUT[0]".
+    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[11]".
+    Warning (15751): Ignored Virtual Pin assignment to "oFIFO_OUT[2]".
+    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[13]".
+    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[15]".
+    Warning (15751): Ignored Virtual Pin assignment to "c3_140MHz".
+    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS_sig[1]".
+    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS[3]".
+    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS[5]".
+    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS[7]".
+    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS[9]".
+    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[10]".
+    Warning (15751): Ignored Virtual Pin assignment to "oFIFO_OUT[3]".
+    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[12]".
+    Warning (15751): Ignored Virtual Pin assignment to "oFIFO_OUT[5]".
+    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[14]".
+    Warning (15751): Ignored Virtual Pin assignment to "oFIFO_OUT[7]".
+    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[16]".
+    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS_sig[0]".
+    Warning (15751): Ignored Virtual Pin assignment to "oFIFO_OUT[9]".
+    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS_sig[2]".
+    Warning (15751): Ignored Virtual Pin assignment to "oWR_REQ_sig".
+    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS[10]".
+    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS[12]".
+    Warning (15751): Ignored Virtual Pin assignment to "c1_112Mhz".
+    Warning (15751): Ignored Virtual Pin assignment to "oFIFO_OUT[4]".
+    Warning (15751): Ignored Virtual Pin assignment to "oFIFO_OUT[6]".
+    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[17]".
+    Warning (15751): Ignored Virtual Pin assignment to "oFIFO_OUT[8]".
+    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS[14]".
+    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[19]".
+    Warning (15751): Ignored Virtual Pin assignment to "isig_initial_sig".
+    Warning (15751): Ignored Virtual Pin assignment to "oFIFO_OUT[10]".
+    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[21]".
+    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS_sig[3]".
+    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[23]".
     Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS_sig[5]".
     Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS_sig[7]".
-    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[10]".
-    Warning (15751): Ignored Virtual Pin assignment to "oFIFO_OUT[9]".
-    Warning (15751): Ignored Virtual Pin assignment to "c3_70MHz_ps".
-    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS[0]".
-    Warning (15751): Ignored Virtual Pin assignment to "oFIFO_OUT[15]".
-    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[5]".
-    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[17]".
-    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[6]".
-    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[19]".
-    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[26]".
-    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[21]".
-    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[29]".
-    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS[15]".
-    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[4]".
-    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS[13]".
-    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS[11]".
-    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[16]".
-    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[22]".
-    Warning (15751): Ignored Virtual Pin assignment to "oFIFO_OUT[5]".
-    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[12]".
-    Warning (15751): Ignored Virtual Pin assignment to "c1_112Mhz".
-    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[27]".
-    Warning (15751): Ignored Virtual Pin assignment to "oFIFO_OUT[2]".
-    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[3]".
-    Warning (15751): Ignored Virtual Pin assignment to "oFIFO_OUT[0]".
+    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[0]".
     Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS_sig[9]".
-    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS[16]".
-    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS_sig[11]".
-    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS[4]".
-    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS_sig[13]".
-    Warning (15751): Ignored Virtual Pin assignment to "oFIFO_OUT[6]".
-    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[9]".
-    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[24]".
-    Warning (15751): Ignored Virtual Pin assignment to "oFIFO_OUT[3]".
-    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[11]".
-    Warning (15751): Ignored Virtual Pin assignment to "oFIFO_OUT[12]".
-    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS[8]".
-    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS_sig[2]".
-    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS_sig[4]".
-    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[8]".
-    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS_sig[6]".
-    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS_sig[8]".
-    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[31]".
-    Warning (15751): Ignored Virtual Pin assignment to "oFIFO_OUT[8]".
-    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[14]".
-    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[15]".
-    Warning (15751): Ignored Virtual Pin assignment to "oFIFO_OUT[7]".
-    Warning (15751): Ignored Virtual Pin assignment to "oFIFO_OUT[10]".
-    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[18]".
-    Warning (15751): Ignored Virtual Pin assignment to "oFIFO_OUT[13]".
-    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS[1]".
-    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[20]".
-    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS[3]".
-    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS_sig[1]".
-    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS_sig[0]".
-    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[30]".
-    Warning (15751): Ignored Virtual Pin assignment to "oWR_REQ_sig".
-    Warning (15751): Ignored Virtual Pin assignment to "oGPIO_0".
-    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[23]".
-    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[28]".
-    Warning (15751): Ignored Virtual Pin assignment to "iGPIO_5".
-    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS[6]".
-    Warning (15751): Ignored Virtual Pin assignment to "iIm_Re_sample_sig[25]".
-    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS[14]".
-    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS[7]".
-    Warning (15751): Ignored Virtual Pin assignment to "oERROR_SERV_sig".
-    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS[12]".
-    Warning (15751): Ignored Virtual Pin assignment to "isig_initial_sig".
-    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS_sig[15]".
-Info (21057): Implemented 3523 device resources after synthesis - the final resource count might be different
+    Warning (15751): Ignored Virtual Pin assignment to "oDATA_BLVDS[11]".
+Info (21057): Implemented 3531 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 4 input pins
     Info (21059): Implemented 1 output pins
-    Info (21061): Implemented 3394 logic cells
+    Info (21061): Implemented 3402 logic cells
     Info (21064): Implemented 122 RAM segments
     Info (21065): Implemented 1 PLLs
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 104 warnings
-    Info: Peak virtual memory: 5090 megabytes
-    Info: Processing ended: Thu Apr 02 10:53:59 2020
-    Info: Elapsed time: 00:00:58
-    Info: Total CPU time (on all processors): 00:01:29
+    Info: Peak virtual memory: 5088 megabytes
+    Info: Processing ended: Thu Apr 02 13:15:17 2020
+    Info: Elapsed time: 00:00:46
+    Info: Total CPU time (on all processors): 00:01:23
 
 
 +------------------------------------------+

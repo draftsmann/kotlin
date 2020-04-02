@@ -230,14 +230,17 @@ always @(posedge iCLK or posedge iRST) begin
                 end
             end
             COLLISION:begin // Состояние отработки коллизий приема
-                if (rFRAME_DELAY < 8'd100) begin
+                oDATA_BLVDS  <= 0;
+					 oWR_REQ      <= 0;
+					 rSERVICE_CNT <= 0;
+					 if (rFRAME_DELAY < 8'd100) begin
                     rFRAME_DELAY <= rFRAME_DELAY + 8'd1;
                     oSEND_OK     <= 1;
                 end
                 else begin
-                    oSEND_OK <= 0;
                     if (iDATA_BLVDS[17:0] == 18'h3FE00) begin
                         state         <= HEAD_WORDS;
+								oSEND_OK      <= 0;
                         oHEAD_ERROR   <= 0;
                         oEPILOG_ERROR <= 0;
                     end
