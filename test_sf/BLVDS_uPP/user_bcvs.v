@@ -1,12 +1,12 @@
 //==================================================================================================
 //  Filename      : user_bcvs.v
 //  Created On    : 2019-08-06 08:45:49
-//  Last Modified : 2020-03-17 09:30:46
+//  Last Modified : 2020-04-02 16:11:33
 //  Revision      : 
 //  Author        : kozhemyakin_rd
 //  Company       : АО Котлин-Новатор
 //  Email         : kozhemyakin_rd@kotlin-novator.ru
-//
+// 
 //  Description   : Передатчик ALTLVDS_TX в БЦВС (шина E). Пользовательский уровень.
 //user_bcvs user_bcvs_inst
 //(
