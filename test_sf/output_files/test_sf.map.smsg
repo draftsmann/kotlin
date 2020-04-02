@@ -1,0 +1,1 @@
+Warning (10268): Verilog HDL information at gpio5_sim.v(18): always construct contains both blocking and non-blocking assignments File: D:/work/test_sf/BLVDS_uPP/TX_uPP/gpio5_sim.v Line: 18

@@ -1,0 +1,16 @@
+set_global_assignment -name IP_TOOL_NAME "BLVDS_uPP_TOP"
+set_global_assignment -name IP_TOOL_VERSION "16.0"
+# set_global_assignment -name IP_GENERATED_DEVICE_FAMILY "{Arria V}"
+# Добавляем уровня взаимодействия по каналам связи RS-485
+# mini help:
+# Добавить qip файл  :         set_global_assignment -name QIP_FILE [file join $::quartus(qip_path) "PHY_Layer_RS485/Data_PHY_layer.qip"]
+# Добавть Verilog HDL:         set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) "Data_PHY_layer.v"]
+# Добавть сопутствующие файлы: set_global_assignment -name MISC_FILE [file join $::quartus(qip_path) "CRC32_ARINC/CRC.hex"]
+set_global_assignment -name QIP_FILE [file join $::quartus(qip_path) "pll1/pll1.qip"]
+set_global_assignment -name QIP_FILE [file join $::quartus(qip_path) "RX_BLVDS/RX_BLVDS.qip"]
+set_global_assignment -name QIP_FILE [file join $::quartus(qip_path) "TX_uPP/TX_uPP.qip"]
+set_global_assignment -name QIP_FILE [file join $::quartus(qip_path) "ERROR_SOLVER/ERROR_SOLVER.qip"]
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) "BLVDS_uPP_TOP.v"]
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) "Strob_cutter.v"]
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) "user_bcvs.v"]
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) "SIMULATION_TOP.v"]

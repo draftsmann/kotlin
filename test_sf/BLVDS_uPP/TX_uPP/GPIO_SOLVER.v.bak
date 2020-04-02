@@ -1,0 +1,199 @@
+module GPIO_SOLVER 
+(
+    input               iCLK,iRST,iSTART,
+    input               iGPIO5,iEMPTY,iSEL_CHANNEL, //iFULL
+    input       [8:0]   iUSEDW,
+    input       [15:0]  iFIFO_OUT,
+
+    output  reg [15:0]  oDATA_UPP,
+    output  reg         oRD_REQ,oACLR_FIFO,oGPIO_0,oSEL_CHANNEL,oENA
+);
+
+    reg                 rGPIO5_rst,rFULL_rst,rSTART_rst,rGPIO_5,rFULL,rSTART,rFLAG_CONT;
+    reg         [8:0]   rWORD_CNT,rLATENCY_CNT,rLATENCY,rEND_CNT,rGPIO0_CNT;
+
+// Declare the state register to be "safe" to implement
+// a safe state machine that can recover gracefully from
+// an illegal state (by returning to the reset state).
+    (* syn_encoding = "safe" *) reg [2:0] state;
+// Declare states
+    parameter GPIO_5 = 0, USEDW = 1, FIFO_LATENCY = 2, DATA_READ = 3, GPIO_0 = 4, END_LATENCY = 5;
+// Initial
+initial begin
+    state = GPIO_5; // !!!
+end
+// // SR-flip-flop
+// SRFF SRFF_iGPIO5 (
+//     .s(iGPIO5), 
+//     .r(rGPIO5_rst), 
+//     .clk(iCLK), 
+//     .clrn(), 
+//     .prn(), 
+//     .q(rGPIO_5)
+// );
+// SRFF SRFF_iFULL (
+//     .s(iFULL), 
+//     .r(rFULL_rst), 
+//     .clk(iCLK), 
+//     .clrn(), 
+//     .prn(), 
+//     .q(rFULL)
+// );
+SRFF SRFF_iSTART (
+    .s(iSTART), 
+    .r(rSTART_rst), 
+    .clk(iCLK), 
+    .clrn(), 
+    .prn(), 
+    .q(rSTART)
+);
+// always @(posedge iCLK) begin
+//     if ((iFULL)&&(!rGPIO_5)) begin
+//         oACLR_FIFO <= 1;
+//     end
+//     else begin
+//         oACLR_FIFO <= 0;
+//     end
+// end
+// Main
+always @(posedge iCLK or posedge iRST) begin
+    if (iRST) begin
+        // reset
+        state <= GPIO_5; // !!!
+    end
+    else
+        case (state)
+            GPIO_5:begin
+                oGPIO_0 <= 0;
+                if (iGPIO5) begin
+                    oSEL_CHANNEL <= iSEL_CHANNEL;
+						  state <= USEDW;
+                end
+                else begin
+                    state <= GPIO_5;
+                end
+            end
+            USEDW:begin
+                oDATA_UPP <= 0;
+                // // oENA      <= 0;
+                // if ((rFULL)&&(!rGPIO_5)) begin
+                //     oENA       <= 0;
+                //     oACLR_FIFO <= 1;
+                //     oRD_REQ    <= 0;
+                //     state      <= USEDW;
+                //     rFULL_rst  <= 1;
+                // end
+                // else begin
+                    oACLR_FIFO <= 0;
+                    rFULL_rst  <= 0;
+                    oGPIO_0    <= 0;
+                    if (iUSEDW > 9'd256) begin // if ((iUSEDW > 9'd49)&&(rGPIO_5)) begin
+                        if (rFLAG_CONT) begin
+                            oDATA_UPP <= iFIFO_OUT;
+                            state     <= DATA_READ;
+                        end
+                        else begin
+//								    oSEL_CHANNEL <= iSEL_CHANNEL;
+                            state <= FIFO_LATENCY;
+                            oENA  <= 0;
+                        end
+//                        oSEL_CHANNEL <= iSEL_CHANNEL;
+                        // state        <= LATENCY;
+                        oRD_REQ      <= 1;    // ????
+                        rLATENCY     <= 9'd1; // FIFO latency 3 ticks
+                    end
+                    else begin
+                        rFLAG_CONT <= 0;
+                        if (rSTART) begin
+                            oDATA_UPP <= iFIFO_OUT;
+                            state     <= DATA_READ;
+									 rWORD_CNT <= rWORD_CNT + 9'd1;
+                        end
+                        else begin
+                            state   <= USEDW;
+                            oENA    <= 0;
+									 oRD_REQ <= 0;    // ????
+                        end
+                    end
+                end
+            // end
+            FIFO_LATENCY:
+                if (rLATENCY_CNT < rLATENCY - 9'd1) begin
+                    rLATENCY_CNT <= rLATENCY_CNT + 9'd1;
+                    state        <= FIFO_LATENCY;
+                end
+                else begin
+                    state        <= DATA_READ;
+                    rLATENCY_CNT <= 0;
+                end
+            DATA_READ:
+                if (rWORD_CNT < 9'd256) begin //256
+                    oDATA_UPP <= iFIFO_OUT;
+                    oENA      <= 1;
+                    if (rWORD_CNT == 9'd255) begin //255
+                        if (iEMPTY) begin
+                            state      <= GPIO_0;
+                            oRD_REQ    <= 0;
+                            rSTART_rst <= 1;
+                            rGPIO5_rst <= 1;
+                        end
+                        else begin
+                            rFLAG_CONT <= 1;
+                            state      <= USEDW;
+                        end
+                        // oRD_REQ    <= 0; 
+                        // rGPIO5_rst <= 1; // ?!?!?!?
+                        rWORD_CNT  <= 0;
+                    end
+//                    else if (rWORD_CNT == 9'd5) begin
+//                        rWORD_CNT <= rWORD_CNT + 9'd1;
+//                        state     <= DATA_READ;
+//                        // oRD_REQ   <= 0; // ?!?!?!?
+//                    end
+                    else begin
+                        rWORD_CNT <= rWORD_CNT + 9'd1;
+                        state     <= DATA_READ;
+                    end
+                end
+                else begin      //    ?!?!?!?!?!?!
+                    state     <= USEDW;
+                    rWORD_CNT <= 0;
+                    oRD_REQ   <= 0;
+                end
+            GPIO_0:begin
+                rSTART_rst <= 0;
+                rFLAG_CONT <= 0;
+                oGPIO_0    <= 1;
+                if (iGPIO5) begin
+                    if (rGPIO0_CNT < 9'd5) begin
+                        rGPIO0_CNT <= rGPIO0_CNT + 9'd1;
+                        oDATA_UPP  <= 0;
+                        oENA       <= 0;
+                    end
+                    else begin
+                        rGPIO0_CNT <= 0;
+                        state      <= GPIO_0;
+                        oDATA_UPP  <= 16'h0000;
+                        oENA       <= 1;
+                    end
+                end
+                else begin
+                    state      <= END_LATENCY;
+                    // oGPIO_0    <= 0; // ?!?!?!?!
+                    oDATA_UPP  <= 0;
+                    rGPIO0_CNT <= 0;
+                    oENA       <= 0;
+                end
+            end
+            END_LATENCY:
+                if (rEND_CNT < 9'd5) begin
+                    rEND_CNT <= rEND_CNT + 9'd1;
+                    state    <= END_LATENCY;
+                end
+                else begin
+                    state    <= GPIO_5;
+                    rEND_CNT <= 0;
+                end
+        endcase
+end
+endmodule

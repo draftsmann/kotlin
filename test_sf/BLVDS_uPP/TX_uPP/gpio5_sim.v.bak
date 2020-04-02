@@ -1,0 +1,34 @@
+module gpio5_sim 
+(
+input       iclk,
+input       ibutton,
+output reg  o_start_str
+);
+
+reg   [8:0] rCNT_H,rCNT_L;
+// Initial
+initial begin
+	o_start_str = 1'b1;
+end
+// Main
+always @(posedge iclk) begin
+	if(ibutton) begin
+	    if (rCNT_H < 9'd20) begin
+		     rCNT_H <= rCNT_H + 9'd1;
+		 end
+		 else begin
+		     rCNT_H <= 0;
+			  o_start_str = 1'b0;
+		 end
+	end
+	else begin
+	    if (rCNT_L < 9'd20) begin
+		     rCNT_L <= rCNT_L + 9'd1;
+		 end
+		 else begin
+		     rCNT_L <= 0;
+			  o_start_str = 1'b1;
+		 end
+	end
+end
+endmodule 
