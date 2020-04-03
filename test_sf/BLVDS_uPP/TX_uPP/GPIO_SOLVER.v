@@ -53,7 +53,8 @@ always @(posedge iCLK or posedge iRST) begin
     else begin
         case (state)
             GPIO_5:begin // Состояние ожидания прерывания (готовности) GPIO_5 от DSP
-                oGPIO_0 <= 0;
+                rSTART_RST <= 0;
+					 oGPIO_0    <= 0;
                 if (iGPIO5) begin
                     oSEL_CHANNEL <= iSEL_CHANNEL; // 
                     state        <= USEDW;
@@ -111,7 +112,7 @@ always @(posedge iCLK or posedge iRST) begin
                         if (iEMPTY) begin // При опустошении FIFO
                             state      <= GPIO_0;
                             oRD_REQ    <= 0;
-                            rSTART_RST <= 1;
+//                            rSTART_RST <= 1;
                         end
                         else begin
                             rFLAG_CONT <= 1;
@@ -131,7 +132,7 @@ always @(posedge iCLK or posedge iRST) begin
                 end
             end
             GPIO_0:begin // Состояние формирования стимулирующих импульсов и GPIO_0
-                rSTART_RST <= 0;
+//                rSTART_RST <= 0;
                 rFLAG_CONT <= 0;
                 oGPIO_0    <= 1;
                 if (iGPIO5) begin
@@ -161,8 +162,9 @@ always @(posedge iCLK or posedge iRST) begin
                     oGPIO_0  <= 0;
                 end
                 else begin
-                    state    <= GPIO_5;
-                    rEND_CNT <= 0;
+					     rSTART_RST <= 1;
+                    state      <= GPIO_5;
+                    rEND_CNT   <= 0;
                 end
             end
         endcase

@@ -102,16 +102,17 @@ always @(posedge iCLK or posedge iRST) begin
         case (state)
             HEAD_WORDS:begin // Состояние ожидания заголовков
                 if (iDATA_BLVDS[17:16] == 2'b11) begin // Идентификация служебных слов
-                    oSEND_OK <= 0;
+                    oSEND_OK   <= 0;
+						  oACLR_FIFO <= 0;
                     if (iDATA_BLVDS[17:0] == 18'h3FE00) begin
                         oDATA_BLVDS  <= 0;
-                        oACLR_FIFO   <= 1;
+//                        oACLR_FIFO   <= 0; // oACLR_FIFO   <= 1;
                         state        <= HEAD_WORDS;
                         rSERVICE_CNT <= 0;
                     end
                     else begin
                         oDATA_BLVDS <= iDATA_BLVDS[15:0];
-                        oACLR_FIFO  <= 0;
+//                        oACLR_FIFO  <= 0;
                         //////////////////////////////////////////////////////////////////////////////////////////
                         //////////////////////////////////////// Заголовки ///////////////////////////////////////
                         //////////////////////////////////////////////////////////////////////////////////////////
@@ -260,6 +261,7 @@ always @(posedge iCLK or posedge iRST) begin
                 else begin
                     rFRAME_DELAY <= 0; 
                     oSEL_CHANNEL <= ~oSEL_CHANNEL; // Смена канала для записи нового кадра
+						  oACLR_FIFO   <= 1;
                     state        <= HEAD_WORDS;
                 end
             end

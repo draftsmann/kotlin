@@ -1,0 +1,93 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "oDATA_UPP[0]",
+					"strict" : false
+				},
+				{
+					"name" : "oDATA_UPP[1]",
+					"strict" : false
+				},
+				{
+					"name" : "oDATA_UPP[2]",
+					"strict" : false
+				},
+				{
+					"name" : "oDATA_UPP[3]",
+					"strict" : false
+				},
+				{
+					"name" : "oDATA_UPP[4]",
+					"strict" : false
+				},
+				{
+					"name" : "oDATA_UPP[5]",
+					"strict" : false
+				},
+				{
+					"name" : "oDATA_UPP[6]",
+					"strict" : false
+				},
+				{
+					"name" : "oDATA_UPP[7]",
+					"strict" : false
+				},
+				{
+					"name" : "oDATA_UPP[8]",
+					"strict" : false
+				},
+				{
+					"name" : "oDATA_UPP[9]",
+					"strict" : false
+				},
+				{
+					"name" : "oDATA_UPP[10]",
+					"strict" : false
+				},
+				{
+					"name" : "oDATA_UPP[11]",
+					"strict" : false
+				},
+				{
+					"name" : "oDATA_UPP[12]",
+					"strict" : false
+				},
+				{
+					"name" : "oDATA_UPP[13]",
+					"strict" : false
+				},
+				{
+					"name" : "oDATA_UPP[14]",
+					"strict" : false
+				},
+				{
+					"name" : "oDATA_UPP[15]",
+					"strict" : false
+				},
+				{
+					"name" : "oENA",
+					"strict" : false
+				},
+				{
+					"name" : "altera_reserved_tms",
+					"strict" : false
+				},
+				{
+					"name" : "altera_reserved_tck",
+					"strict" : false
+				},
+				{
+					"name" : "altera_reserved_tdi",
+					"strict" : false
+				},
+				{
+					"name" : "altera_reserved_tdo",
+					"strict" : false
+				}
+			]
+		}
+	]
+}
