@@ -7,6 +7,6 @@ set_global_assignment -name IP_TOOL_VERSION "16.0"
 # Добавть Verilog HDL:         set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) "Data_PHY_layer.v"]
 # Добавть сопутствующие файлы: set_global_assignment -name MISC_FILE [file join $::quartus(qip_path) "CRC32_ARINC/CRC.hex"]
 # set_global_assignment -name QIP_FILE [file join $::quartus(qip_path) "fifo_28/fifo_28.qip"]
+set_global_assignment -name QIP_FILE [file join $::quartus(qip_path) "rst_button/rst_button/synthesis/rst_button.qip"]
 set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) "BLVDS_RECEIVER.v"]
 set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) "FIFO_16.v"]
-

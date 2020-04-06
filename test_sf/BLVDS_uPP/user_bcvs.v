@@ -61,10 +61,10 @@ reg        [17:0] rpack_crc;
 reg        [17:0] rframe_crc;
 reg        [1:0]  rframe_cnt;
 reg               rflag_sel;
-reg               rflag_sev;
+//reg               rflag_sev;
 reg        [15:0] num_sample;     // Количество выборок в пакете
 reg        [15:0] rnum_sample;
-reg        [5:0]  rdelay_frame;
+//reg        [5:0]  rdelay_frame;
 reg        [7:0]  rnum_pack;
 
 // reg               ren_frame_crc;
@@ -98,7 +98,7 @@ initial begin
     sample_cnt       <= 0;
     rpack_crc        <= 0;
     rframe_crc       <= 0;
-    rflag_sev        <= 1; 
+//    rflag_sev        <= 1; 
 end
 always @(posedge iclk or posedge ireset) begin
     if (ireset) begin
@@ -117,7 +117,7 @@ always @(posedge iclk or posedge ireset) begin
                 rflag_sel     <= 0;
                 if (isig_initial) begin
                     rnum_pack    <= num_pack;
-                    rdelay_frame <= 0;
+//                    rdelay_frame <= 0;
                     state        <= frame_head;
                     num_sample   <= 256*size_pack; // 2048*size_pack
                     rnum_sample  <= (256*size_pack);//rnum_sample <= (2*size_pack) + 16'd8; // С учетом ПИВ (СЕВ/АРУШ)
@@ -141,7 +141,7 @@ always @(posedge iclk or posedge ireset) begin
                     rframe_crc <= rframe_crc + {2'b11,frame_head_2,1'b0,channels,size_pack};
                     part_cnt   <= 0;
                     state      <= pack_head;
-                    rflag_sev  <= 1; 
+//                    rflag_sev  <= 1; 
                 end
             end
             sev_send:begin
@@ -201,7 +201,7 @@ always @(posedge iclk or posedge ireset) begin
                     part_cnt   <= 0;
                     state      <= data_send;
                     rflag_sel  <= rflag_sel + 1'b1;
-                    rflag_sev  <= 0; // Обнуление флага для передачи индивидуального размера пакета СЕВ
+//                    rflag_sev  <= 0; // Обнуление флага для передачи индивидуального размера пакета СЕВ
                 end
             end
             pack_head:begin

@@ -1,4 +1,6 @@
-module ERROR_SOLVER
+module ERROR_SOLVER #(
+    ERR_NUM = 16'd5 // Колличество ошибок при котором инициализируется сброс
+)
 (
     input              iCLK,
     input              iFULL_ERROR,iHEAD_ERROR,iEPILOG_ERROR,
@@ -38,8 +40,8 @@ always @(posedge iCLK) begin
 end
 // Анализ кол-ва ошибок и формирование сигнала сброса модуля BLVDS_RECEIVER
 always @(posedge iCLK) begin
-    if ((oFULL_ERR_CNT > 16'd5) || (oHEAD_ERR_CNT > 16'd5) || (oEPILOG_ERR_CNT > 16'd5)) begin// if (wERR_STAT > 16'd5) begin
-        oRST_BLVDS_RECEIVER <= 1;
+    if ((oFULL_ERR_CNT > ERR_NUM) || (oHEAD_ERR_CNT > ERR_NUM) || (oEPILOG_ERR_CNT > ERR_NUM)) begin// if (wERR_STAT > 16'd5) begin
+        oRST_BLVDS_RECEIVER <= 1; // Инициализация синхронного сброса модуля приема кадров по BLVDS
         rSCLR_CNT           <= 1;
     end
     else begin

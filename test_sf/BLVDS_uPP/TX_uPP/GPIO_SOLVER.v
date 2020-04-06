@@ -11,10 +11,10 @@ module GPIO_SOLVER
     input       [15:0]  iFIFO_OUT,
 
     output  reg [15:0]  oDATA_UPP,
-    output  reg         oRD_REQ,oACLR_FIFO,oGPIO_0,oSEL_CHANNEL,oENA
+    output  reg         oRD_REQ,oGPIO_0,oSEL_CHANNEL,oENA
 );
 
-    reg                 rSTART_RST,rGPIO_5,rFULL,rSTART,rFLAG_CONT;
+    reg                 rSTART_RST,rSTART,rFLAG_CONT;
     reg         [8:0]   rWORD_CNT,rLATENCY_CNT,rLATENCY,rEND_CNT,rGPIO0_CNT,rUSEDW;
 
 // Declare the state register to be "safe" to implement
@@ -30,7 +30,21 @@ localparam GPIO_5       = 0, // Состояние ожидания прерыв
            END_LATENCY  = 5; // Состояние формирования задержки между чтениями кадров
 // Начальная инициализация
 initial begin
-    state = GPIO_5; // !!!
+    state        <= GPIO_5; // !!!
+    rSTART_RST   <= 0;
+    rSTART       <= 0;
+    rFLAG_CONT   <= 0;
+    rWORD_CNT    <= 0;
+    rLATENCY_CNT <= 0;
+    rLATENCY     <= 0;
+    rEND_CNT     <= 0;
+    rGPIO0_CNT   <= 0;
+    rUSEDW       <= 0;
+    oDATA_UPP    <= 0;
+    oRD_REQ      <= 0;
+    oGPIO_0      <= 0;
+    oSEL_CHANNEL <= 0;
+    oENA         <= 0;
 end
 // Модуль встроенной функции RS-flip-flop
 SRFF SRFF_iSTART (
@@ -48,13 +62,25 @@ end
 // Main
 always @(posedge iCLK or posedge iRST) begin
     if (iRST) begin      // Сброс
-        state <= GPIO_5; // !!!
+        state        <= GPIO_5; // !!!
+        rSTART_RST   <= 0;
+        rFLAG_CONT   <= 0;
+        rWORD_CNT    <= 0;
+        rLATENCY_CNT <= 0;
+        rLATENCY     <= 0;
+        rEND_CNT     <= 0;
+        rGPIO0_CNT   <= 0;
+        oDATA_UPP    <= 0;
+        oRD_REQ      <= 0;
+        oGPIO_0      <= 0;
+        oSEL_CHANNEL <= 0;
+        oENA         <= 0;
     end
     else begin
         case (state)
             GPIO_5:begin // Состояние ожидания прерывания (готовности) GPIO_5 от DSP
                 rSTART_RST <= 0;
-					 oGPIO_0    <= 0;
+                oGPIO_0    <= 0;
                 if (iGPIO5) begin
                     oSEL_CHANNEL <= iSEL_CHANNEL; // 
                     state        <= USEDW;
@@ -65,10 +91,9 @@ always @(posedge iCLK or posedge iRST) begin
             end
             USEDW:begin // Состояние проверки заполненности (USEDW) FIFO для чтения (или сигнала окончания приема кадра)
                 oDATA_UPP  <= 0;
-                oACLR_FIFO <= 0;
                 oGPIO_0    <= 0;
                 if (rUSEDW > USEDW_VALUE) begin // if ((rUSEDW > 9'd49)&&(rGPIO_5)) begin
-                    if (rFLAG_CONT) begin
+                    if (rFLAG_CONT) begin // В случае если требуется продолжить чтение (непрерывность - continuous)
                         oDATA_UPP <= iFIFO_OUT;
                         state     <= DATA_READ;
                     end
@@ -114,8 +139,8 @@ always @(posedge iCLK or posedge iRST) begin
                             oRD_REQ    <= 0;
 //                            rSTART_RST <= 1;
                         end
-                        else begin
-                            rFLAG_CONT <= 1;
+                        else begin // Если FIFO неопустошено
+                            rFLAG_CONT <= 1; // Флаг для осуществления непрерывного чтения из FIFO (continuous)
                             state      <= USEDW;
                         end
                         rWORD_CNT <= 0;
@@ -162,7 +187,7 @@ always @(posedge iCLK or posedge iRST) begin
                     oGPIO_0  <= 0;
                 end
                 else begin
-					     rSTART_RST <= 1;
+                    rSTART_RST <= 1;
                     state      <= GPIO_5;
                     rEND_CNT   <= 0;
                 end

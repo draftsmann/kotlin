@@ -17,7 +17,7 @@ module BLVDS_uPP_TOP
     wire          wSEND_OK,wSEL_CH_WR,wFULL_ERROR_STB,wHEAD_ERROR_STB,wEPILOG_ERROR_STB;
     wire          wEMPTY_A,wEMPTY_B,wRD_REQ_A,wRD_REQ_B,wWR_REQ_A,wWR_REQ_B,wSEL_CH_RD;
     wire          wGPIO5_DB,wFULL_ERROR,wHEAD_ERROR,wEPILOG_ERROR;
-    wire          wWRFULL,wWR_REQ,wRST_BLVDS_RECEIVER;
+    wire          wWRFULL,wWR_REQ,wRST_BLVDS_RECEIVER,wRST_ERR_SOLV,wRST_BUTTON;
     wire   [8:0]  wRDUSEDW,wRDUSEDW_A,wRDUSEDW_B;
     wire   [15:0] wFIFO_OUT_A,wFIFO_OUT_B;
 
@@ -38,6 +38,8 @@ module BLVDS_uPP_TOP
     assign wRD_EMPTY = (wSEL_CH_RD)? wEMPTY_A:wEMPTY_B;
 // Коммутация каналов доступных для чтения данных FIFO
     assign wRDUSEDW = (wSEL_CH_RD)? wRDUSEDW_A:wRDUSEDW_B;
+// Коммутация сигналов сброса модуля приема кадров ISSP и ERROR_SOLVER (соответственно)
+    assign wRST_BLVDS_RECEIVER = wRST_BUTTON || wRST_ERR_SOLV;
 // Модуль мегафункции FIFO для записи прнимаемых кадров (КАНАЛ А)
 FIFO_16 FIFO_16_A (
     .aclr    ( wACLR_A     ),
@@ -64,6 +66,9 @@ FIFO_16 FIFO_16_B (
     .wrfull  ( wWR_FULL_B  ),
     .rdusedw ( wRDUSEDW_B  )
 );
+rst_button rst_button_inst (
+    .source(wRST_BUTTON)
+);
 // Модуль приемника кадров по BLVDS
 BLVDS_RECEIVER BLVDS_RECEIVER_inst (
     .iCLK           ( iC0_56MHZ           ) ,
@@ -79,6 +84,8 @@ BLVDS_RECEIVER BLVDS_RECEIVER_inst (
     .oSEL_CHANNEL   ( wSEL_CH_WR          ), 
     .oACLR_FIFO     ( wACLR               )  
 );
+defparam BLVDS_RECEIVER_inst.COLLISION_DELAY = 8'd100; // Величина задержки в случае выявления ошибки приема
+defparam BLVDS_RECEIVER_inst.FRAME_DELAY     = 8'd100; // Величина задержки перед приемом нового кадра
 // Модуль формирования строба из сигнала ошибки переполнения
 Strob_cutter Strob_cutter_FULL (
     .iclk        ( iC0_56MHZ       ) ,
@@ -103,11 +110,12 @@ ERROR_SOLVER ERROR_SOLVER_inst (
     .iFULL_ERROR         ( wFULL_ERROR_STB     ) , 
     .iHEAD_ERROR         ( wHEAD_ERROR_STB     ) , 
     .iEPILOG_ERROR       ( wEPILOG_ERROR_STB   ) , 
-    .oRST_BLVDS_RECEIVER ( wRST_BLVDS_RECEIVER ) ,
+    .oRST_BLVDS_RECEIVER ( wRST_ERR_SOLV       ) ,
     .oFULL_ERR_CNT       ( oFULL_ERR_CNT       ) , 
     .oHEAD_ERR_CNT       ( oHEAD_ERR_CNT       ) , 
     .oEPILOG_ERR_CNT     ( oEPILOG_ERR_CNT     )
 );
+defparam ERROR_SOLVER_inst.ERR_NUM = 16'd5; // Колличество ошибок при котором инициализируется сброс
 // Модуль устранения дребезга (наводок)
 button_debouncer button_debouncer_inst (
     .iCLK       ( iC2_70MHZ ) ,
@@ -117,8 +125,7 @@ button_debouncer button_debouncer_inst (
     .oSW_DOWN   (           ) ,
     .oSW_UP     (           )  
 );
-
-defparam button_debouncer_inst.CNT_WIDTH = 7; // Разрядность счетчика проверяющего стабильность лог. уровеня
+defparam button_debouncer_inst.CNT_WIDTH = 7; // Разрядность счетчика проверяющего стабильность лог. уровня
 // Модуль обработки прерываний и передачи по uPP
 GPIO_SOLVER GPIO_SOLVER_inst (
     .iCLK           ( iC2_70MHZ  ) ,
@@ -135,7 +142,6 @@ GPIO_SOLVER GPIO_SOLVER_inst (
     .oSEL_CHANNEL   ( wSEL_CH_RD ) ,
     .oENA           ( oENA       )  
 );
-
 defparam GPIO_SOLVER_inst.USEDW_VALUE    = 9'd256; // Глубина заполнения FIFO при которой начинается запись
 defparam GPIO_SOLVER_inst.CHECK_GPIO5    = 9'd100; // Период проверки сброса GPIO_5 для формирования GPIO_0
 defparam GPIO_SOLVER_inst.BETWEEN_FRAMES = 9'd100; // Задержка между вычитываниями кадров
