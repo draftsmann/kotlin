@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : user_bcvs.v
 //  Created On    : 2019-08-06 08:45:49
-//  Last Modified : 2020-04-02 16:11:33
+//  Last Modified : 2020-04-07 15:17:33
 //  Revision      : 
 //  Author        : kozhemyakin_rd
 //  Company       : АО Котлин-Новатор
@@ -119,8 +119,8 @@ always @(posedge iclk or posedge ireset) begin
                     rnum_pack    <= num_pack;
 //                    rdelay_frame <= 0;
                     state        <= frame_head;
-                    num_sample   <= 256*size_pack; // 2048*size_pack
-                    rnum_sample  <= (256*size_pack);//rnum_sample <= (2*size_pack) + 16'd8; // С учетом ПИВ (СЕВ/АРУШ)
+                    num_sample   <= 16'd2048*size_pack; // 2048*size_pack
+                    rnum_sample  <= (16'd2048*size_pack); //rnum_sample <= (2*size_pack) + 16'd8; // С учетом ПИВ (СЕВ/АРУШ)
                 end
                 else begin
                     state      <= init_send;
@@ -260,7 +260,7 @@ always @(posedge iclk or posedge ireset) begin
                 end
                 else begin
                     rpack_crc  <= 0;
-                    if (pack_cnt < rnum_pack - 1) begin // rnum_pack
+                    if (pack_cnt < rnum_pack - 8'd1) begin // rnum_pack
                         oUser_data <= {2'b11,pack_epilog_2,5'b00000,~(rpack_crc[7:0])}; // Отправка слова эпилога пакета 111
                         rframe_crc <= rframe_crc + {2'b11,pack_epilog_2,5'b00000,~(rpack_crc[7:0])};
                         part_cnt   <= 0;

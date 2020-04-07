@@ -288,11 +288,20 @@ always @(posedge iCLK or posedge iRST) begin
             LATENCY:begin // Состояние задержки перед приемом нового кадра
                 if (rFRAME_DELAY < FRAME_DELAY) begin
                     rFRAME_DELAY <= rFRAME_DELAY + 8'd1;
+                    if (rFRAME_DELAY == FRAME_DELAY - 8'd5) begin
+                        oSEL_CHANNEL <= ~oSEL_CHANNEL; // Смена канала для записи нового кадра
+                    end
+                    else if (rFRAME_DELAY == FRAME_DELAY - 8'd2) begin
+                        oACLR_FIFO   <= 1;
+                    end
+                    else begin
+                        
+                    end
                 end
                 else begin
                     rFRAME_DELAY <= 0; 
-                    oSEL_CHANNEL <= ~oSEL_CHANNEL; // Смена канала для записи нового кадра
-                    oACLR_FIFO   <= 1;
+                    // oSEL_CHANNEL <= ~oSEL_CHANNEL; // Смена канала для записи нового кадра
+                    oACLR_FIFO   <= 0;
                     state        <= HEAD_WORDS;
                 end
             end
