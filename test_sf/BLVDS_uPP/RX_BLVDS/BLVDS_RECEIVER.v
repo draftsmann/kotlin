@@ -1,3 +1,16 @@
+//==================================================================================================
+//  Filename      : BLVDS_RECEIVER.v
+//  Created On    : 2020-04-08 13:05:53
+//  Last Modified : 2020-04-08 13:05:54
+//  Revision      : 
+//  Author        : Roman Kozhemyakin
+//  Company       : AO Kotlin-Novator
+//  Email         : kozhemyakin_rd@kotlin-novator.ru
+//
+//  Description   : 
+//
+//
+//==================================================================================================
 module BLVDS_RECEIVER #(
     COLLISION_DELAY = 8'd100, // Величина задержки в случае выявления ошибки приема
     FRAME_DELAY     = 8'd100  // Величина задержки перед приемом нового кадра

@@ -1,3 +1,16 @@
+//==================================================================================================
+//  Filename      : GPIO_SOLVER.v
+//  Created On    : 2020-04-08 13:04:55
+//  Last Modified : 2020-04-08 13:04:56
+//  Revision      : 
+//  Author        : Roman Kozhemyakin
+//  Company       : AO Kotlin-Novator
+//  Email         : kozhemyakin_rd@kotlin-novator.ru
+//
+//  Description   : 
+//
+//
+//==================================================================================================
 module GPIO_SOLVER
 #(
     USEDW_VALUE    = 9'd256, // Глубина заполнения FIFO при которой начинается запись

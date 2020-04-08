@@ -1,3 +1,16 @@
+//==================================================================================================
+//  Filename      : button_debouncer.v
+//  Created On    : 2020-04-08 13:05:06
+//  Last Modified : 2020-04-08 13:05:13
+//  Revision      : 
+//  Author        : 
+//  Company       : AO Kotlin-Novator
+//  Email         : 
+//
+//  Description   : 
+//
+//
+//==================================================================================================
 module button_debouncer
 #(
     parameter CNT_WIDTH = 7

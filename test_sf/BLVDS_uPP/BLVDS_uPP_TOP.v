@@ -1,3 +1,16 @@
+//==================================================================================================
+//  Filename      : BLVDS_uPP_TOP.v
+//  Created On    : 2020-04-08 13:03:35
+//  Last Modified : 2020-04-08 13:03:46
+//  Revision      : 
+//  Author        : Roman Kozhemyakin
+//  Company       : AO Kotlin-Novator
+//  Email         : kozhemyakin_rd@kotlin-novator.ru
+//
+//  Description   : 
+//
+//
+//==================================================================================================
 module BLVDS_uPP_TOP 
 (
     input         iC0_56MHZ,iC2_70MHZ,iGPIO5,
@@ -13,59 +26,31 @@ module BLVDS_uPP_TOP
 
     wire   [15:0] wFIFO_OUT;
     wire   [15:0] wDATA_BLVDS;
-    wire          wACLR,wACLR_A,wACLR_B,wRD_REQ,wWR_FULL_A,wWR_FULL_B,wRD_EMPTY;
+    wire          wACLR,wRD_REQ,wRD_EMPTY,wSEL_CH_RD;
     wire          wSEND_OK,wSEL_CH_WR,wFULL_ERROR_STB,wHEAD_ERROR_STB,wEPILOG_ERROR_STB;
-    wire          wEMPTY_A,wEMPTY_B,wRD_REQ_A,wRD_REQ_B,wWR_REQ_A,wWR_REQ_B,wSEL_CH_RD;
     wire          wGPIO5_DB,wFULL_ERROR,wHEAD_ERROR,wEPILOG_ERROR;
     wire          wWRFULL,wWR_REQ,wRST_BLVDS_RECEIVER,wRST_ERR_SOLV,wRST_BUTTON;
-    wire   [8:0]  wRDUSEDW,wRDUSEDW_A,wRDUSEDW_B;
-    wire   [15:0] wFIFO_OUT_A,wFIFO_OUT_B;
+    wire   [8:0]  wRDUSEDW;
 
-// Коммутация каналов запроса на запись в FIFO
-    assign wWR_REQ_A = (wSEL_CH_WR)? wWR_REQ:1'b0;
-    assign wWR_REQ_B = (!wSEL_CH_WR)? wWR_REQ:1'b0;
-// Коммутация каналов сигнала асинхронного сброса FIFO
-    assign wACLR_A = (wSEL_CH_WR)? wACLR:1'b0;
-    assign wACLR_B = (!wSEL_CH_WR)? wACLR:1'b0;
-// Коммутация каналов переполнения на запись FIFO
-    assign wWRFULL = (wSEL_CH_WR)? wWR_FULL_A:wWR_FULL_B;
-// Коммутация каналов запроса на чтение из FIFO
-    assign wRD_REQ_A = (wSEL_CH_RD)? wRD_REQ:1'b0;
-    assign wRD_REQ_B = (!wSEL_CH_RD)? wRD_REQ:1'b0;
-// Коммутация каналов выходных данных FIFO
-    assign wFIFO_OUT = (wSEL_CH_RD)? wFIFO_OUT_A:wFIFO_OUT_B;
-// Коммутация каналов опустошения на чтение из FIFO
-    assign wRD_EMPTY = (wSEL_CH_RD)? wEMPTY_A:wEMPTY_B;
-// Коммутация каналов доступных для чтения данных FIFO
-    assign wRDUSEDW = (wSEL_CH_RD)? wRDUSEDW_A:wRDUSEDW_B;
 // Коммутация сигналов сброса модуля приема кадров ISSP и ERROR_SOLVER (соответственно)
     assign wRST_BLVDS_RECEIVER = wRST_BUTTON || wRST_ERR_SOLV;
-// Модуль мегафункции FIFO для записи прнимаемых кадров (КАНАЛ А)
-FIFO_16 FIFO_16_A (
-    .aclr    ( wACLR_A     ),
-    .data    ( wDATA_BLVDS ),
-    .rdclk   ( iC2_70MHZ   ),
-    .rdreq   ( wRD_REQ_A   ),
-    .wrclk   ( iC0_56MHZ   ),
-    .wrreq   ( wWR_REQ_A   ),
-    .q       ( wFIFO_OUT_A ),
-    .rdempty ( wEMPTY_A    ),
-    .wrfull  ( wWR_FULL_A  ),
-    .rdusedw ( wRDUSEDW_A  )
+
+// Модуль коммутации каналов FIFO
+FIFO_SWITCH FIFO_SWITCH_inst (
+    .iC0_56MHZ   ( iC0_56MHZ   ) ,
+    .iC2_70MHZ   ( iC2_70MHZ   ) ,
+    .iSEL_CH_WR  ( wSEL_CH_WR  ) ,
+    .iWR_REQ     ( wWR_REQ     ) ,
+    .iACLR       ( wACLR       ) ,
+    .iSEL_CH_RD  ( wSEL_CH_RD  ) ,
+    .iRD_REQ     ( wRD_REQ     ) ,
+    .iDATA_BLVDS ( wDATA_BLVDS ) ,
+    .oWRFULL     ( wWRFULL     ) ,
+    .oRD_EMPTY   ( wRD_EMPTY   ) ,
+    .oRDUSEDW    ( wRDUSEDW    ) ,
+    .oFIFO_OUT   ( wFIFO_OUT   )
 );
-// Модуль мегафункции FIFO для записи прнимаемых кадров (КАНАЛ B)
-FIFO_16 FIFO_16_B (
-    .aclr    ( wACLR_B     ),
-    .data    ( wDATA_BLVDS ),
-    .rdclk   ( iC2_70MHZ   ),
-    .rdreq   ( wRD_REQ_B   ),
-    .wrclk   ( iC0_56MHZ   ),
-    .wrreq   ( wWR_REQ_B   ),
-    .q       ( wFIFO_OUT_B ),
-    .rdempty ( wEMPTY_B    ),
-    .wrfull  ( wWR_FULL_B  ),
-    .rdusedw ( wRDUSEDW_B  )
-);
+// Модуль мегафункции In-System Sources and Probes (сброс модуля BLVDS_RECEIVER)
 rst_button rst_button_inst (
     .source(wRST_BUTTON)
 );

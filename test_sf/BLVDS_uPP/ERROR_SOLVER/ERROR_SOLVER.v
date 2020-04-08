@@ -1,3 +1,16 @@
+//==================================================================================================
+//  Filename      : ERROR_SOLVER.v
+//  Created On    : 2020-04-08 13:06:02
+//  Last Modified : 2020-04-08 13:06:02
+//  Revision      : 
+//  Author        : Roman Kozhemyakin
+//  Company       : AO Kotlin-Novator
+//  Email         : kozhemyakin_rd@kotlin-novator.ru
+//
+//  Description   : 
+//
+//
+//==================================================================================================
 module ERROR_SOLVER #(
     ERR_NUM = 16'd5 // Колличество ошибок при котором инициализируется сброс
 )
