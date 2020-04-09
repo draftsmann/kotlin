@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : BLVDS_RECEIVER.v
 //  Created On    : 2020-04-08 13:05:53
-//  Last Modified : 2020-04-08 13:05:54
+//  Last Modified : 2020-04-08 17:15:34
 //  Revision      : 
 //  Author        : Roman Kozhemyakin
 //  Company       : AO Kotlin-Novator
@@ -42,7 +42,7 @@ module BLVDS_RECEIVER #(
 //    reg         [15:0]  rPACK_CRC;
     reg         [15:0]  rFRAME_CRC;
     reg         [17:0]  rCALC_CRC;
-    reg         [15:0]  rSAMPLE_CNT;
+    reg         [16:0]  rSAMPLE_CNT;
     reg         [7:0]   rFRAME_DELAY;
     reg         [7:0]   rCOLLISION_DELAY;
 
@@ -237,7 +237,7 @@ always @(posedge iCLK or posedge iRST) begin
                 oDATA_BLVDS <= iDATA_BLVDS[15:0];
                 rCALC_CRC   <= rCALC_CRC + iDATA_BLVDS;
                 if (rSAMPLE_CNT < (rSAMPLE_NUM + 16'd7)) begin
-                    rSAMPLE_CNT <= rSAMPLE_CNT + 16'd1;
+                    rSAMPLE_CNT <= rSAMPLE_CNT + 17'd1;
                     state       <= DATA_RECEIVE;
                 end
                 else begin

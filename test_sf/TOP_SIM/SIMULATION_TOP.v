@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : SIMULATION_TOP.v
 //  Created On    : 2020-04-08 13:03:56
-//  Last Modified : 2020-04-08 15:09:46
+//  Last Modified : 2020-04-09 11:10:46
 //  Revision      : 
 //  Author        : Roman Kozhemyakin
 //  Company       : AO Kotlin-Novator
@@ -66,7 +66,7 @@ user_bcvs user_bcvs_inst (
     .iIm_Re_sample  ( {6'b110011,rTIME_CNT} ) ,
     .format         (                       ) ,                            
     .channels       (                       ) ,                          
-    .num_pack       ( 8'd255                ) ,                      
+    .num_pack       ( 8'd32                 ) ,                      
     .numOI          ( 16'hFFFF              ) ,                     
     .numTIR         ( 16'hFFFF              ) ,                    
     .lPPS           ( 32'hF5F5F5F5          ) ,                  
