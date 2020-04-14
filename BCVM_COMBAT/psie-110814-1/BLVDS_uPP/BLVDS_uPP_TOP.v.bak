@@ -1,0 +1,151 @@
+module BLVDS_uPP_TOP 
+(
+    input iCLK_sig, // iGPIO5,
+    // input [31:0] iIm_Re_sample_sig,
+
+    output  oWR_REQ_sig,
+    output  oERROR_SERV_sig,c1_112Mhz,
+    output  oGPIO_0,
+    output  oENA,c3_70MHz_ps,c3_140MHz,
+    output [15:0] oDATA_BLVDS_sig,oFIFO_OUT,
+    output [15:0] oDATA_UPP
+);
+
+    reg  [25:0] time_cnt;
+    wire [17:0] iDATA_BLVDS_sig;
+    wire        c0_56Mhz,wACLR_sig,wACLR_A,wACLR_B,rdreq_sig,rdfull_A,rdfull_B,wRDempty,wSEND_OK,wSEL_CH_WR;
+    wire        empty_A,empty_B,rdreq_A,rdreq_B,wrreq_A,wrreq_B,wSEL_CH_RD,c2_70MHz,wGPIO5,wGPIO5_db;
+    wire        wRDfull;
+    wire [8:0]  wRDusedw,rdusedw_A,rdusedw_B;
+    reg         isig_initial_sig;
+    wire [15:0] oFIFO_OUT_A,oFIFO_OUT_B;
+
+pll1 pll1_inst (
+    .inclk0 ( iCLK_sig ),
+    .c0 ( c0_56Mhz ),
+    .c1 ( c1_112Mhz ),
+    .c2 ( c2_70MHz ),
+    .c3 ( c3_70MHz_ps ),
+	 .c4 ( c3_140MHz )
+);
+
+always @(posedge c0_56Mhz) begin
+    if (time_cnt < 26'd50000000) begin //26'd50000000
+        time_cnt <= time_cnt + 26'd1;
+        isig_initial_sig <= 0;
+    end
+    else begin
+        isig_initial_sig <= 1;
+        time_cnt <= 0;
+    end
+end
+
+// assign rdreq_sig = (wRDempty)? 1'b0:1'b1; // !!!!!!
+
+assign wrreq_A = (wSEL_CH_WR)? oWR_REQ_sig:1'b0;
+assign wrreq_B = (!wSEL_CH_WR)? oWR_REQ_sig:1'b0;
+
+assign wACLR_A = (wSEL_CH_WR)? wACLR_sig:1'b0;
+assign wACLR_B = (!wSEL_CH_WR)? wACLR_sig:1'b0;
+
+assign rdreq_A = (wSEL_CH_RD)? rdreq_sig:1'b0;
+assign rdreq_B = (!wSEL_CH_RD)? rdreq_sig:1'b0;
+
+assign oFIFO_OUT = (wSEL_CH_RD)? oFIFO_OUT_A:oFIFO_OUT_B;
+assign wRDempty = (wSEL_CH_RD)? empty_A:empty_B;
+assign wRDfull = (wSEL_CH_RD)? rdfull_A:rdfull_B;
+assign wRDusedw = (wSEL_CH_RD)? rdusedw_A:rdusedw_B;
+
+FIFO_16 FIFO_16_A (
+    .aclr ( wACLR_A ),
+    .data ( oDATA_BLVDS_sig ),
+    .rdclk ( c2_70MHz ),
+    .rdreq ( rdreq_A ),
+    .wrclk ( c0_56Mhz ),
+    .wrreq ( wrreq_A ),
+    .q ( oFIFO_OUT_A ),
+    .rdempty ( empty_A ),
+    .rdfull ( rdfull_A ),
+    .rdusedw ( rdusedw_A )
+);
+
+FIFO_16 FIFO_16_B (
+    .aclr ( wACLR_B ),
+    .data ( oDATA_BLVDS_sig ),
+    .rdclk ( c2_70MHz ),
+    .rdreq ( rdreq_B ),
+    .wrclk ( c0_56Mhz ),
+    .wrreq ( wrreq_B ),
+    .q ( oFIFO_OUT_B ),
+    .rdempty ( empty_B ),
+    .rdfull ( rdfull_B ),
+    .rdusedw ( rdusedw_B )
+);
+    
+BLVDS_RECEIVER BLVDS_RECEIVER_inst (
+    .iCLK(c0_56Mhz) ,   // input  iCLK_sig
+    .iRST() ,   // input  iRST_sig
+    .iDATA_BLVDS(iDATA_BLVDS_sig) , // input [17:0] iDATA_BLVDS_sig
+    .oERROR_SERV(oERROR_SERV_sig) , // output  oERROR_SERV_sig
+    .oSEND_OK(wSEND_OK) ,   // output  oSEND_OK_sig
+    .oWR_REQ(oWR_REQ_sig) , // output  oWR_REQ_sig
+    .oDATA_BLVDS(oDATA_BLVDS_sig) , // output [15:0] oDATA_BLVDS_sig
+    .oSEL_CHANNEL(wSEL_CH_WR),     // output  wSEL_CH_WR
+    .oACLR_FIFO(wACLR_sig)     // output  oACLR_FIFO_sig
+);
+
+user_bcvs user_bcvs_inst (
+    .iclk(c0_56Mhz) ,   // input  iclk_sig
+    .ireset() , // input  ireset_sig
+    .isig_initial(isig_initial_sig) ,   // input  isig_initial_sig
+    .iIm_Re_sample({6'b110011,time_cnt}) ,  // input [31:0] iIm_Re_sample_sig
+    .format() , // input [2:0] format_sig
+    .channels() ,   // input [3:0] channels_sig
+    .num_pack(8'd2) ,   // input [7:0] num_pack_sig
+    .numOI(16'hFFFF) ,  // input [15:0] numOI_sig
+    .numTIR(16'hFFFF) , // input [15:0] numTIR_sig
+    .lPPS(32'hF5F5F5F5) ,   // input [31:0] lPPS_sig
+    .ARUSH(32'hF5F5F5F5) ,  // input [31:0] ARUSH_sig
+    .Bcur(16'hFFFF) ,   // input [15:0] Bcur_sig
+    .Icur(16'hFFFF) ,   // input [15:0] Icur_sig
+    .size_pack(8'd2) ,  // input [7:0] size_pack_sig
+    .osig_init_sig() ,  // output  osig_init_sig_sig
+    .oRd_addr_BLVDS() , // output [15:0] oRd_addr_BLVDS_sig
+    .oUser_data(iDATA_BLVDS_sig)    // output [17:0] oUser_data_sig
+);
+
+gpio5_sim gpio5_sim_inst
+(
+	.iclk(c2_70MHz) ,	// input  iclk_sig
+	.ibutton(oGPIO_0) ,	// input  ibutton_sig
+	.o_start_str(wGPIO5) 	// output  o_start_str_sig
+);
+
+button_debouncer button_debouncer_inst
+(
+	.iCLK(c2_70MHz) ,	// input  iCLK_sig
+	.iRST() ,	// input  iRST_sig
+	.iSW(wGPIO5) ,	// input  iSW_sig
+	.oSW_STATE(wGPIO5_db) ,	// output  oSW_STATE_sig
+	.oSW_DOWN() ,	// output  oSW_DOWN_sig
+	.oSW_UP() 	// output  oSW_UP_sig
+);
+
+GPIO_SOLVER GPIO_SOLVER_inst (
+    .iCLK(c2_70MHz) ,   // input  iCLK_sig
+    .iRST() ,   // input  iRST_sig
+    .iSTART(wSEND_OK) , // input  iSTART_sig
+    .iGPIO5(wGPIO5_db) , // input  iGPIO5_sig
+    .iEMPTY(wRDempty) ,   // input  iwRDempty
+    // .iFULL(iFULL_sig) ,  // input  iFULL_sig
+    .iSEL_CHANNEL(wSEL_CH_WR) ,   // input  iSEL_CHANNEL_sig
+    .iUSEDW(wRDusedw) ,   // input [8:0] wRDusedw
+    .iFIFO_OUT(oFIFO_OUT) , // input [15:0] iFIFO_OUT_sig
+    .oDATA_UPP(oDATA_UPP) , // output [15:0] oDATA_UPP
+    .oRD_REQ(rdreq_sig) , // output  oRD_REQ_sig
+    // .oACLR_FIFO(wACLR_sig) ,   // output  oACLR_FIFO_sig
+    .oGPIO_0(oGPIO_0) , // output  oGPIO_0
+    .oSEL_CHANNEL(wSEL_CH_RD) ,   // output  wSEL_CH_RD
+    .oENA(oENA)     // output  oENA
+);
+endmodule

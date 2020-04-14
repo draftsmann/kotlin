@@ -1,0 +1,288 @@
+module BLVDS_RECEIVER 
+(
+    input               iCLK,
+    input               iRST,
+    // input               iGPIO_5,
+    input       [17:0]  iDATA_BLVDS,
+    input               iWRfull,
+    // output  reg         oEN_uPP,
+    output  reg         oSEND_OK, // Ошибка приема служебных слов
+    output  reg         oWR_REQ,
+    output  reg         oFULL_ERROR,oHEAD_ERROR,oEPILOG_ERROR,
+    output  reg [15:0]  oDATA_BLVDS,
+    // output  reg         oGPIO_16,
+    // output  reg         oCLEAR_FIFO,
+    output  reg         oSEL_CHANNEL,oACLR_FIFO
+);
+//Logic
+    reg    [2:0]    rPART_CNT;
+    // reg    [15:0]   rRESULT_CRC;
+    reg             rRST;         // Регистр сброса RS-триггера
+    // reg             rflag_GPIO_5; // Регистр флаг наличия GPIO_5
+    reg    [2:0]    rFORMAT;
+    reg    [1:0]    rFRAME_CNT;
+    reg    [7:0]    rPACK_NUM;
+    reg    [3:0]    rCHANNELS;
+    reg    [7:0]    rPACK_SIZE;
+    reg    [4:0]    rPACK_CNT;
+    reg    [15:0]   rSAMPLE_NUM;
+    reg    [15:0]   rSERVICE_CNT;
+    reg    [7:0]    rPACK_COUNT;
+    reg    [15:0]   rPACK_CRC;
+    reg    [15:0]   rFRAME_CRC;
+    reg    [17:0]   rCALC_CRC;
+    reg    [15:0]   rSAMPLE_CNT;
+    reg    [7:0]    rFRAME_DELAY;
+
+// Declare the state register to be "safe" to implement
+// a safe state machine that can recover gracefully from
+// an illegal state (by returning to the reset state).
+    (* syn_encoding = "safe" *) reg [2:0] state;
+
+// Declare states
+    parameter HEAD_WORDS = 0, EPILOG_WORDS = 1, DATA_RECEIVE = 2, END_FRAME = 3, COLLISION = 4, LATENCY = 5;
+//Initial
+initial begin
+    state        = HEAD_WORDS; // !!!
+    // oCLEAR_FIFO  = 0;
+    rRST         = 0;
+    // rflag_GPIO_5 = 0;
+    // oEN_uPP      = 0;
+    // oRD_REQ      = 0;
+    oWR_REQ      = 0;
+    // oGPIO_16     = 0;
+    oSEL_CHANNEL = 0;
+    rRST         = 0;
+    // rflag_GPIO_5 = 0;
+    rFORMAT      = 0;
+    rFRAME_CNT   = 0;
+    rPACK_NUM    = 0;
+    rCHANNELS    = 0;
+    rPACK_SIZE   = 0;
+    rPACK_CNT    = 0;
+    rSAMPLE_NUM  = 0;
+    rSERVICE_CNT = 0;
+    rPACK_CRC    = 0;
+    rFRAME_CRC   = 0;
+    rCALC_CRC    = 0;
+    rSAMPLE_CNT  = 0;
+    rPART_CNT    = 0;
+    rFRAME_DELAY = 0;
+    // rRESULT_CRC  = 0;
+end
+always @(posedge iCLK) begin
+    if (iWRfull) begin
+        oFULL_ERROR <= 1;
+    end
+    else begin
+        oFULL_ERROR <= 0;
+    end
+end
+// Main
+always @(posedge iCLK or posedge iRST) begin
+    if (iRST) begin
+        // reset
+        state        <= HEAD_WORDS; // !!!
+        // oCLEAR_FIFO  <= 1;
+        rRST         <= 0;
+        // rflag_GPIO_5 <= 0;
+        // oEN_uPP      <= 0;
+        // oRD_REQ      <= 0;
+        oWR_REQ      <= 0;
+        // oGPIO_16     <= 0;
+        oSEL_CHANNEL <= 0;
+        rRST         <= 0;
+        // rflag_GPIO_5 <= 0;
+        rFORMAT      <= 0;
+        rFRAME_CNT   <= 0;
+        rCALC_CRC    <= 0;
+        rPACK_NUM    <= 0;
+        rCHANNELS    <= 0;
+        rPACK_SIZE   <= 0;
+        rPACK_CNT    <= 0;
+        rSAMPLE_NUM  <= 0;
+        rSERVICE_CNT <= 0;
+        rPACK_CRC    <= 0;
+        rFRAME_CRC   <= 0;
+        rSAMPLE_CNT  <= 0;
+        rPART_CNT    <= 0;
+        rFRAME_DELAY <= 0;
+        // rRESULT_CRC  <= 0;
+    end
+    else
+        case (state)
+            HEAD_WORDS:
+                if (iDATA_BLVDS[17:16] == 2'b11) begin // Идентификация служебных слов
+                    oACLR_FIFO <= 0;
+                    oSEND_OK   <= 0;
+                    if (iDATA_BLVDS[17:0] == 18'h3FE00) begin
+                        oDATA_BLVDS  <= 0;
+                        state        <= HEAD_WORDS;
+                        rSERVICE_CNT <= 0;
+                    end
+                    else begin
+                        oDATA_BLVDS  <= iDATA_BLVDS[15:0];
+                        //////////////////////////////////////////////////////////////////////////////////////////
+                        //////////////////////////////////////// Заголовки ///////////////////////////////////////
+                        //////////////////////////////////////////////////////////////////////////////////////////
+                        if ((iDATA_BLVDS[15:13] == 3'b000)&&(rSERVICE_CNT == 16'd0)) begin // Признак первого слова в заголовке кадра 
+                            rFORMAT      <= iDATA_BLVDS[12:10];   // Формат
+                            rFRAME_CNT   <= iDATA_BLVDS[9:8];     // Счётчик кадров
+                            rPACK_NUM    <= iDATA_BLVDS[7:0];     // Количество пакетов/дорожек дальности
+                            oWR_REQ      <= 1; // Сигнал разрешения записи в FIFO
+                            rCALC_CRC    <= rCALC_CRC + iDATA_BLVDS;
+                            rSERVICE_CNT <= rSERVICE_CNT + 16'd1;
+                        end
+                        else if ((iDATA_BLVDS[15:13] == 3'b001)&&(rSERVICE_CNT == 16'd1)) begin // Признак второго слова в заголовке кадра 
+                            rCHANNELS    <= iDATA_BLVDS[11:8];         // Каналы
+                            rPACK_SIZE   <= iDATA_BLVDS[7:0];          // Размер пакета ЦМР = 2048 (Режим/масштаб)
+                            rCALC_CRC    <= rCALC_CRC + iDATA_BLVDS;
+                            rSERVICE_CNT <= rSERVICE_CNT + 16'd1;
+                        end
+                        else if ((iDATA_BLVDS[15:13] == 3'b010)&&(rSERVICE_CNT == 16'd2)) begin // Признак первого слова в заголовке пакета 
+                            rPACK_CNT         <= iDATA_BLVDS[12:8]; // Счётчик пакетов
+                            rSAMPLE_NUM[15:8] <= iDATA_BLVDS[7:0];  // Старшая часть количества выборок в пакете
+                            rCALC_CRC         <= rCALC_CRC + iDATA_BLVDS;
+                            rSERVICE_CNT      <= rSERVICE_CNT + 16'd1;
+                        end
+                        else if ((iDATA_BLVDS[15:13] == 3'b011)&&(rSERVICE_CNT == 16'd3)) begin // Признак второго слова в заголовке пакета 
+                            rSAMPLE_NUM[7:0] <= iDATA_BLVDS[7:0];   // Младшая часть количества выборок в пакете
+                            state            <= DATA_RECEIVE;
+                            rCALC_CRC        <= rCALC_CRC + iDATA_BLVDS;
+                            rSERVICE_CNT     <= rSERVICE_CNT + 16'd1;
+                        end
+                        else begin
+                            state       <= COLLISION;
+                            oHEAD_ERROR <= 1;
+                        end
+                    end
+                end
+                else begin
+                    state        <= HEAD_WORDS;
+                end
+            EPILOG_WORDS:begin
+                // if (iDATA_BLVDS[17:16] == 2'b11) begin // Идентификация служебных слов
+                //     if (iDATA_BLVDS[17:0] == 18'h3FE00) begin
+                //         oDATA_BLVDS  <= 0;
+                //         state        <= EPILOG_WORDS;
+                //         rSERVICE_CNT <= 0;
+                //     end
+                //     else begin
+                        oDATA_BLVDS  <= iDATA_BLVDS[15:0];
+                        //////////////////////////////////////////////////////////////////////////////////////////
+                        //////////////////////////////////////// Эпилоги /////////////////////////////////////////
+                        //////////////////////////////////////////////////////////////////////////////////////////
+                        if ((iDATA_BLVDS[15:13] == 3'b110)&&(rSERVICE_CNT == 16'd4)) begin // Признак первого слова в эпилоге пакета 
+                            rPACK_CRC [15:8] <= iDATA_BLVDS[7:0];    // Старшая часть контрольной суммы в пакете
+                            rCALC_CRC        <= rCALC_CRC + iDATA_BLVDS;
+                            rSERVICE_CNT     <= rSERVICE_CNT + 16'd1;
+                        end
+                        else if ((iDATA_BLVDS[15:8] == 8'b11100000)&&(rSERVICE_CNT == 16'd5)) begin // Признак второго слова в эпилоге пакета 
+                            if (rPACK_COUNT == rPACK_NUM) begin 
+                                rSERVICE_CNT <= rSERVICE_CNT + 16'd1;
+                                rPACK_COUNT  <= 0;
+                                state        <= EPILOG_WORDS;
+                            end
+                            else begin
+                                rSERVICE_CNT <= 16'd2;
+                                state        <= HEAD_WORDS;
+                            end
+                            rPACK_CRC [7:0]  <= iDATA_BLVDS[7:0];    // Младшая часть контрольной суммы в пакете
+                            rCALC_CRC        <= rCALC_CRC + iDATA_BLVDS;
+                        end
+                        else if ((iDATA_BLVDS[15:8] == 8'b10000000)&&(rSERVICE_CNT == 16'd6)) begin // Признак первого слова в эпилоге кадра 
+                            rFRAME_CRC [15:8] <= iDATA_BLVDS[7:0];   // Старшая часть контрольной суммы в кадре
+                            rSERVICE_CNT      <= rSERVICE_CNT + 16'd1;
+                        end
+                        else if ((iDATA_BLVDS[15:13] == 3'b101)&&(rSERVICE_CNT == 16'd7)) begin // Признак второго слова в эпилоге кадра 
+                            rFRAME_CRC [7:0]  <= iDATA_BLVDS[7:0];   // Младшая часть контрольной суммы в кадре
+                            state             <= END_FRAME;
+                            rSERVICE_CNT      <= 0;
+                        end
+                        else begin
+                            state         <= COLLISION;
+                            oEPILOG_ERROR <= 1;
+                        end
+                    // end
+                // end
+                // else begin
+                //     state        <= EPILOG_WORDS;
+                //     // oWR_REQ <= 0; // Сигнал разрешения записи в FIFO
+                // end
+            end
+            DATA_RECEIVE:begin
+            // if (rPACK_COUNT < rPACK_NUM) begin
+                oDATA_BLVDS <= iDATA_BLVDS[15:0];
+                rCALC_CRC   <= rCALC_CRC + iDATA_BLVDS;
+                if (rSAMPLE_CNT < (rSAMPLE_NUM + 16'd7)) begin
+                    rSAMPLE_CNT <= rSAMPLE_CNT + 16'd1;
+                    state       <= DATA_RECEIVE;
+                end
+                else begin
+                    rSAMPLE_CNT  <= 0;
+                    rPACK_COUNT  <= rPACK_COUNT + 8'd1;
+                    state        <= EPILOG_WORDS;
+                end
+            end
+            END_FRAME:
+                if (rPART_CNT < 3'd3) begin
+                    state       <= END_FRAME;
+                    rPART_CNT   <= rPART_CNT + 3'd1;
+                    if (rPART_CNT == 3'd0) begin
+                        oDATA_BLVDS <= rFRAME_CRC;
+                    end
+                    if (rPART_CNT == 3'd1) begin
+                        oDATA_BLVDS <= ~(rCALC_CRC[15:0]);
+                    end
+                    else if (rPART_CNT == 3'd2) begin
+                        if (rFRAME_CRC == ~(rCALC_CRC[15:0])) begin
+                            oDATA_BLVDS <= 16'h00F1;
+                        end
+                        else begin
+                            oDATA_BLVDS <= 16'h00F0;
+                        end
+                    end
+                end
+                else begin
+                    state        <= LATENCY;
+                    oSEND_OK     <= 1;
+                    rSERVICE_CNT <= 0;
+                    // oSEL_CHANNEL <= ~oSEL_CHANNEL;
+                    oWR_REQ      <= 0; // Сигнал разрешения записи в FIFO
+                    rCALC_CRC    <= 0;
+                    rPART_CNT    <= 0;
+                end
+            COLLISION:
+                if (rFRAME_DELAY < 8'd100) begin
+                    rFRAME_DELAY <= rFRAME_DELAY + 8'd1;
+                    oSEND_OK     <= 1;
+                end
+                else begin
+                    oSEND_OK <= 0;
+                    if (iDATA_BLVDS[17:0] == 18'h3FE00) begin
+                        state         <= HEAD_WORDS;
+                        oHEAD_ERROR   <= 0;
+                        oEPILOG_ERROR <= 0;
+                    end
+                    else begin
+                        state <= COLLISION;
+                    end
+                    rFRAME_DELAY <= 0;
+                    rSERVICE_CNT <= 0;
+                    rCALC_CRC    <= 0;
+                    oACLR_FIFO   <= 1; // ???
+                    // state        <= HEAD_WORDS;
+                end
+            LATENCY:
+                if (rFRAME_DELAY < 8'd100) begin
+                    rFRAME_DELAY <= rFRAME_DELAY + 8'd1;
+                end
+                else begin
+                    rFRAME_DELAY <= 0;
+                    oACLR_FIFO   <= 1;
+                    oSEL_CHANNEL <= ~oSEL_CHANNEL;
+                    state        <= HEAD_WORDS;
+                end
+        endcase
+end
+endmodule 

@@ -1,0 +1,28 @@
+Info: Starting: Create block symbol file (.bsf)
+Info: qsys-generate D:\GitHub\kotlin\test_sf\BLVDS_uPP\RX_BLVDS\rst_button\rst_button.qsys --block-symbol-file --output-directory=D:\GitHub\kotlin\test_sf\BLVDS_uPP\RX_BLVDS\rst_button\rst_button --family="Cyclone IV E" --part=EP4CE22F17C6
+Progress: Loading rst_button/rst_button.qsys
+Progress: Reading input file
+Progress: Adding in_system_sources_probes_0 [altera_in_system_sources_probes 16.0]
+Progress: Parameterizing module in_system_sources_probes_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Info: qsys-generate succeeded.
+Info: Finished: Create block symbol file (.bsf)
+Info: 
+Info: Starting: Create HDL design files for synthesis
+Info: qsys-generate D:\GitHub\kotlin\test_sf\BLVDS_uPP\RX_BLVDS\rst_button\rst_button.qsys --synthesis=VERILOG --output-directory=D:\GitHub\kotlin\test_sf\BLVDS_uPP\RX_BLVDS\rst_button\rst_button\synthesis --family="Cyclone IV E" --part=EP4CE22F17C6
+Progress: Loading rst_button/rst_button.qsys
+Progress: Reading input file
+Progress: Adding in_system_sources_probes_0 [altera_in_system_sources_probes 16.0]
+Progress: Parameterizing module in_system_sources_probes_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Info: rst_button: Generating rst_button "rst_button" for QUARTUS_SYNTH
+Info: in_system_sources_probes_0: "rst_button" instantiated altera_in_system_sources_probes "in_system_sources_probes_0"
+Info: rst_button: Done "rst_button" with 2 modules, 2 files
+Info: qsys-generate succeeded.
+Info: Finished: Create HDL design files for synthesis
