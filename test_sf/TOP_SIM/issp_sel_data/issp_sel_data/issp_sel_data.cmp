@@ -1,0 +1,6 @@
+	component issp_sel_data is
+		port (
+			source : out std_logic_vector(0 downto 0)   -- source
+		);
+	end component issp_sel_data;
+

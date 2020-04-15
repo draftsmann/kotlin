@@ -20,8 +20,10 @@ module SIMULATION_TOP
     output        oENA                                // Сигнал enable для uPP
 );
 
+    wire   [31:0] wIm_Re_sample;
+	 wire   [31:0] wCNT_OUT_DATA,wFOR_DIV2_56MHz;
     wire          wC0_56MHZ,wC2_70MHZ;
-    wire          wGPIO_0;             
+    wire          wGPIO_0,wBLVDS_TX_INIT,wISSP_SEL,wISSP_INIT,wISSP_STB,wISSP_SEL_DATA;             
     reg    [25:0] rTIME_CNT;
     reg           rBLVDS_TX_INIT;
     wire          wGPIO5;
@@ -48,6 +50,18 @@ always @(posedge wC0_56MHZ) begin
         rTIME_CNT      <= 0;
     end
 end
+// Если wISSP_SEL в лог.1 -> отправка кадра раз в "1 мс", иначе (по дефолту) отправка по запросу 1 кадра
+    assign wBLVDS_TX_INIT = (wISSP_SEL)? rBLVDS_TX_INIT : wISSP_STB;
+// Мегафункция ISSP для формирования инициализирующего воздействия для модуля отправки кадра
+issp issp_SENDFRAME (
+    .source      ({wISSP_SEL,wISSP_INIT})
+);
+// Модуль формирования строба из сигнала инициализации отправки кадра
+Strob_cutter Strob_cutter_INIT (
+    .iclk        ( wC0_56MHZ   ) ,
+    .ibutton     ( wISSP_INIT  ) ,
+    .o_start_str ( wISSP_STB   )  
+);
 // Модуль верхнего уровня интерфейсов BLVDS и uPP
 BLVDS_uPP_TOP BLVDS_uPP_TOP_inst (
     .iC0_56MHZ   ( wC0_56MHZ   ) ,
@@ -58,12 +72,30 @@ BLVDS_uPP_TOP BLVDS_uPP_TOP_inst (
     .oDATA_UPP   ( oDATA_UPP   ) ,
     .oENA        ( oENA        )    
 );
+// Если wISSP_SEL_DATA в лог.1 -> в качестве ОСЦ - выход счетчика, иначе (по дефолту) в качестве ОСЦ - константа
+    assign wIm_Re_sample = (wISSP_SEL_DATA)? wCNT_OUT_DATA : 32'h89ABCDEF;
+// Мегафункция ISSP для смены источника ОЦС
+issp_sel_data issp_sel_data_inst (
+    .source      ( wISSP_SEL_DATA )
+);
+// Мегафункция счетчика для деления частоты
+cnt_data	cnt_data_div (
+	 .clock       ( wC0_56MHZ       ),
+	 .clk_en      ( 1'b1            ),
+	 .q           ( wFOR_DIV2_56MHz )
+);
+// Мегафункция счетчика для имитации ОЦС
+cnt_data	cnt_data_OCS (
+	 .clock       ( wC0_56MHZ          ),
+	 .clk_en      ( wFOR_DIV2_56MHz[0] ),
+	 .q           ( wCNT_OUT_DATA      )
+);
 // Модуль формирования и отправки кадров по BLVDS (симуляция)
 user_bcvs user_bcvs_inst (
     .iclk           ( wC0_56MHZ             ) ,                     
     .ireset         (                       ) ,                            
-    .isig_initial   ( rBLVDS_TX_INIT        ) ,        
-    .iIm_Re_sample  ( {6'b110011,rTIME_CNT} ) ,
+    .isig_initial   ( wBLVDS_TX_INIT        ) ,        
+    .iIm_Re_sample  ( wIm_Re_sample         ) ,
     .format         (                       ) ,                            
     .channels       (                       ) ,                          
     .num_pack       ( 8'd32                 ) ,                      

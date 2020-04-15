@@ -1,0 +1,29 @@
+<session jtag_chain="USB-Blaster [USB-0]" jtag_device="@1: EP3C25/EP4CE22 (0x020F30DD)">
+  <display_attributes is_max_probe_read_interval="1" is_write_immediate="1" probe_read_interval="1" probe_read_interval_units="s"/>
+  <instance enable_logging="true" entity_name="INIT" is_auto_node="true" name="INIT">
+    <node_ip_info instance_id="0" mfg_id="110" node_id="9" version="0"/>
+    <sources>
+      <source name="INIT" value="false"/>
+      <source name="SELL" value="false"/>
+    </sources>
+    <probes/>
+    <view>
+      <view_node expanded="true" group_name="source[1..0]" index="0" lsb_to_msb="false" node_type="source" view_type="group_header"/>
+      <view_node expanded="true" index="1" node_type="source" view_type="group_member"/>
+      <view_node expanded="true" index="0" node_type="source" view_type="group_member"/>
+    </view>
+    <log data="" max_size="8" size="0" time="" width="2"/>
+  </instance>
+  <instance enable_logging="true" entity_name="iRST" is_auto_node="true" name="iRST">
+    <node_ip_info instance_id="1" mfg_id="110" node_id="9" version="0"/>
+    <sources>
+      <source name="source[0]" value="false"/>
+    </sources>
+    <probes/>
+    <view>
+      <view_node expanded="true" group_name="source[0..0]" index="0" lsb_to_msb="false" node_type="source" view_type="group_header"/>
+      <view_node expanded="true" index="0" node_type="source" view_type="group_member"/>
+    </view>
+    <log data="" max_size="8" size="0" time="" width="1"/>
+  </instance>
+</session>

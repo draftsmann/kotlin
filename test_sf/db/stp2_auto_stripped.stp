@@ -778,7 +778,7 @@
         <trigger_in_editor/>
         <trigger_out_editor/>
       </presentation>
-      <trigger CRC="9F57BD0C" attribute_mem_mode="false" gap_record="true" global_temp="1" is_expanded="true" name="trigger: 2020/03/25 10:07:35  #0" position="pre" power_up_trigger_mode="false" record_data_gap="true" segment_size="1024" storage_mode="off" storage_qualifier_disabled="no" storage_qualifier_port_is_pin="false" storage_qualifier_port_name="auto_stp_external_storage_qualifier" storage_qualifier_port_tap_mode="classic" trigger_type="circular">
+      <trigger CRC="9F57BD0C" attribute_mem_mode="false" gap_record="true" global_temp="1" is_expanded="true" name="trigger: 2020/03/25 10:07:35  #0" position="pre" power_up_trigger_mode="false" record_data_gap="true" segment_size="1024" storage_mode="off" storage_qualifier_disabled="no" storage_qualifier_port_is_pin="true" storage_qualifier_port_name="auto_stp_external_storage_qualifier" storage_qualifier_port_tap_mode="classic" trigger_type="circular">
         <power_up_trigger position="pre" storage_qualifier_disabled="no"/>
         <events use_custom_flow_control="no">
           <level enabled="yes" name="condition1" type="basic">'oGPIO_0' == either edge
@@ -1653,7 +1653,7 @@
         <trigger_in_editor/>
         <trigger_out_editor/>
       </presentation>
-      <trigger CRC="541882B2" attribute_mem_mode="false" gap_record="true" global_temp="1" is_expanded="true" name="trigger: 2020/04/08 12:49:29  #0" position="pre" power_up_trigger_mode="false" record_data_gap="true" segment_size="1024" storage_mode="off" storage_qualifier_disabled="no" storage_qualifier_port_is_pin="false" storage_qualifier_port_name="auto_stp_external_storage_qualifier" storage_qualifier_port_tap_mode="classic" trigger_type="circular">
+      <trigger CRC="541882B2" attribute_mem_mode="false" gap_record="true" global_temp="1" is_expanded="true" name="trigger: 2020/04/08 12:49:29  #0" position="pre" power_up_trigger_mode="false" record_data_gap="true" segment_size="1024" storage_mode="off" storage_qualifier_disabled="no" storage_qualifier_port_is_pin="true" storage_qualifier_port_name="auto_stp_external_storage_qualifier" storage_qualifier_port_tap_mode="classic" trigger_type="circular">
         <power_up_trigger position="pre" storage_qualifier_disabled="no"/>
         <events use_custom_flow_control="no">
           <level enabled="yes" name="condition1" type="basic">'BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|GPIO_SOLVER:GPIO_SOLVER_inst|oGPIO_0' == either edge
@@ -1706,8 +1706,8 @@ trigger;]]>
   </instance>
   <instance enabled="true" entity_name="sld_signaltap" is_auto_node="yes" is_expanded="true" name="auto_signaltap_2" source_file="sld_signaltap.vhd">
     <node_ip_info instance_id="2" mfg_id="110" node_id="0" version="6"/>
-    <signal_set global_temp="1" is_expanded="true" name="signal_set: 2020/04/08 17:31:21  #0">
-      <clock name="oC1_112MHZ" polarity="posedge" tap_mode="classic"/>
+    <signal_set global_temp="1" is_expanded="true" name="signal_set: 2020/04/15 15:28:43  #0">
+      <clock name="oC3_140MHZ" polarity="posedge" tap_mode="classic"/>
       <config pipeline_level="0" ram_type="AUTO" reserved_data_nodes="0" reserved_storage_qualifier_nodes="0" reserved_trigger_nodes="0" sample_depth="2048" trigger_in_enable="no" trigger_out_enable="no"/>
       <top_entity/>
       <signal_vec>
@@ -2436,12 +2436,13 @@ trigger;]]>
         <trigger_in_editor/>
         <trigger_out_editor/>
       </presentation>
-      <trigger CRC="42D5655C" attribute_mem_mode="false" gap_record="true" global_temp="1" is_expanded="true" name="trigger: 2020/04/08 17:54:16  #0" position="post" power_up_trigger_mode="false" record_data_gap="true" segment_size="2048" storage_mode="off" storage_qualifier_disabled="no" storage_qualifier_port_is_pin="false" storage_qualifier_port_name="auto_stp_external_storage_qualifier" storage_qualifier_port_tap_mode="classic" trigger_type="circular">
+      <trigger CRC="42D5E5A7" attribute_mem_mode="false" gap_record="true" global_temp="1" is_expanded="true" name="trigger: 2020/04/15 15:28:43  #1" position="post" power_up_trigger_mode="false" record_data_gap="true" segment_size="2048" storage_mode="off" storage_qualifier_disabled="no" storage_qualifier_port_is_pin="true" storage_qualifier_port_name="auto_stp_external_storage_qualifier" storage_qualifier_port_tap_mode="classic" trigger_type="circular">
         <power_up_trigger position="pre" storage_qualifier_disabled="no"/>
         <events use_custom_flow_control="no">
           <level enabled="yes" name="condition1" type="basic">'BLVDS_uPP_TOP:BLVDS_uPP_TOP_inst|GPIO_SOLVER:GPIO_SOLVER_inst|oGPIO_0' == either edge
             <power_up enabled="yes">
-            </power_up><op_node/>
+            </power_up>
+            <op_node/>
           </level>
         </events>
         <storage_qualifier_events>
@@ -2468,14 +2469,14 @@ trigger;]]>
     </signal_set>
     <position_info>
       <single attribute="active tab" value="0"/>
-      <single attribute="data horizontal scroll position" value="0"/>
-      <single attribute="data vertical scroll position" value="0"/>
+      <single attribute="data horizontal scroll position" value="1649"/>
+      <single attribute="data vertical scroll position" value="3"/>
       <single attribute="setup horizontal scroll position" value="0"/>
       <single attribute="setup vertical scroll position" value="2"/>
       <single attribute="zoom level denominator" value="1"/>
-      <single attribute="zoom level numerator" value="1"/>
+      <single attribute="zoom level numerator" value="64"/>
       <single attribute="zoom offset denominator" value="1"/>
-      <single attribute="zoom offset numerator" value="129024"/>
+      <single attribute="zoom offset numerator" value="2016"/>
     </position_info>
   </instance>
   <global_info>
@@ -2488,7 +2489,7 @@ trigger;]]>
     <single attribute="jtag widget visible" value="1"/>
     <single attribute="lock mode" value="0"/>
     <multi attribute="column width" size="23" value="34,34,243,74,62,78,95,96,98,98,88,88,110,101,101,101,101,101,101,101,101,107,10"/>
-    <multi attribute="frame size" size="2" value="1920,1001"/>
+    <multi attribute="frame size" size="2" value="1181,991"/>
     <multi attribute="jtag widget size" size="2" value="334,139"/>
   </global_info>
 </session>

@@ -8,5 +8,8 @@ set_global_assignment -name IP_TOOL_VERSION "16.0"
 # Добавть сопутствующие файлы: set_global_assignment -name MISC_FILE [file join $::quartus(qip_path) "CRC32_ARINC/CRC.hex"]
 set_global_assignment -name QIP_FILE [file join $::quartus(qip_path) "BLVDS_uPP/BLVDS_uPP_TOP.qip"]
 set_global_assignment -name QIP_FILE [file join $::quartus(qip_path) "TOP_SIM/pll1/pll1.qip"]
+set_global_assignment -name QIP_FILE [file join $::quartus(qip_path) "TOP_SIM/issp/issp/synthesis/issp.qip"]
+set_global_assignment -name QIP_FILE [file join $::quartus(qip_path) "TOP_SIM/issp_sel_data/issp_sel_data/synthesis/issp_sel_data.qip"]
+set_global_assignment -name QIP_FILE [file join $::quartus(qip_path) "TOP_SIM/cnt_data/cnt_data.qip"]
 set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) "TOP_SIM/user_bcvs.v"]
 set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) "TOP_SIM/SIMULATION_TOP.v"]

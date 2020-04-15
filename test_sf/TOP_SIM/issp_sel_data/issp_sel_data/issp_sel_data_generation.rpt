@@ -1,0 +1,28 @@
+Info: Starting: Create block symbol file (.bsf)
+Info: qsys-generate D:\GitHub\kotlin\test_sf\TOP_SIM\issp_sel_data\issp_sel_data.qsys --block-symbol-file --output-directory=D:\GitHub\kotlin\test_sf\TOP_SIM\issp_sel_data\issp_sel_data --family="Cyclone IV E" --part=EP4CE22F17C6
+Progress: Loading issp_sel_data/issp_sel_data.qsys
+Progress: Reading input file
+Progress: Adding in_system_sources_probes_0 [altera_in_system_sources_probes 16.0]
+Progress: Parameterizing module in_system_sources_probes_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Info: qsys-generate succeeded.
+Info: Finished: Create block symbol file (.bsf)
+Info: 
+Info: Starting: Create HDL design files for synthesis
+Info: qsys-generate D:\GitHub\kotlin\test_sf\TOP_SIM\issp_sel_data\issp_sel_data.qsys --synthesis=VERILOG --output-directory=D:\GitHub\kotlin\test_sf\TOP_SIM\issp_sel_data\issp_sel_data\synthesis --family="Cyclone IV E" --part=EP4CE22F17C6
+Progress: Loading issp_sel_data/issp_sel_data.qsys
+Progress: Reading input file
+Progress: Adding in_system_sources_probes_0 [altera_in_system_sources_probes 16.0]
+Progress: Parameterizing module in_system_sources_probes_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Info: issp_sel_data: Generating issp_sel_data "issp_sel_data" for QUARTUS_SYNTH
+Info: in_system_sources_probes_0: "issp_sel_data" instantiated altera_in_system_sources_probes "in_system_sources_probes_0"
+Info: issp_sel_data: Done "issp_sel_data" with 2 modules, 2 files
+Info: qsys-generate succeeded.
+Info: Finished: Create HDL design files for synthesis
