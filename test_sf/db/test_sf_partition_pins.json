@@ -68,6 +68,10 @@
 					"strict" : false
 				},
 				{
+					"name" : "oSTART",
+					"strict" : false
+				},
+				{
 					"name" : "oENA",
 					"strict" : false
 				},

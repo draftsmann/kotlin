@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : SIMULATION_TOP.v
 //  Created On    : 2020-04-08 13:03:56
-//  Last Modified : 2020-04-09 11:10:46
+//  Last Modified : 2020-04-16 15:10:00
 //  Revision      : 
 //  Author        : Roman Kozhemyakin
 //  Company       : AO Kotlin-Novator
@@ -14,14 +14,16 @@
 module SIMULATION_TOP 
 (
     input         iCLK,                               // Сигнал тактирования для PLL
+    input         iWAIT,
 
     output [15:0] oDATA_UPP,                          //
     output        oC1_112MHZ,oC3_140MHZ,oC3_70MHZ_PS, // Сигналы с выхода PLL для SignalTap II и uPP
+    output        oSTART,
     output        oENA                                // Сигнал enable для uPP
 );
 
     wire   [31:0] wIm_Re_sample;
-	 wire   [31:0] wCNT_OUT_DATA,wFOR_DIV2_56MHz;
+	wire   [31:0] wCNT_OUT_DATA,wFOR_DIV2_56MHz;
     wire          wC0_56MHZ,wC2_70MHZ;
     wire          wGPIO_0,wBLVDS_TX_INIT,wISSP_SEL,wISSP_INIT,wISSP_STB,wISSP_SEL_DATA;             
     reg    [25:0] rTIME_CNT;
@@ -68,8 +70,10 @@ BLVDS_uPP_TOP BLVDS_uPP_TOP_inst (
     .iC2_70MHZ   ( wC2_70MHZ   ) ,
     .iGPIO5      ( wGPIO5      ) ,      
     .iDATA_BLVDS ( wDATA_BLVDS ) ,
+    .iWAIT       ( iWAIT       ) ,
     .oGPIO_0     ( wGPIO_0     ) , 
     .oDATA_UPP   ( oDATA_UPP   ) ,
+    .oSTART      ( oSTART      ) ,
     .oENA        ( oENA        )    
 );
 // Если wISSP_SEL_DATA в лог.1 -> в качестве ОСЦ - выход счетчика, иначе (по дефолту) в качестве ОСЦ - константа

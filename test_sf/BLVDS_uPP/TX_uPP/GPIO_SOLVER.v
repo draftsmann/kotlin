@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : GPIO_SOLVER.v
 //  Created On    : 2020-04-08 13:04:55
-//  Last Modified : 2020-04-08 13:04:56
+//  Last Modified : 2020-04-16 16:08:49
 //  Revision      : 
 //  Author        : Roman Kozhemyakin
 //  Company       : AO Kotlin-Novator
@@ -19,15 +19,15 @@ module GPIO_SOLVER
 )
 (
     input               iCLK,iRST,iSTART,
-    input               iGPIO5,iEMPTY,iSEL_CHANNEL,
+    input               iGPIO5,iEMPTY,iSEL_CHANNEL,//iWAIT
     input       [8:0]   iUSEDW,
     input       [15:0]  iFIFO_OUT,
 
     output  reg [15:0]  oDATA_UPP,
-    output  reg         oRD_REQ,oGPIO_0,oSEL_CHANNEL,oENA
+    output  reg         oRD_REQ,oGPIO_0,oSEL_CHANNEL,oSTART,oENA
 );
 
-    reg                 rSTART_RST,rSTART,rFLAG_CONT;
+    reg                 rSTART_RST,rSTART,rFLAG_CONT,rFLAG_START;
     reg         [8:0]   rWORD_CNT,rLATENCY_CNT,rLATENCY,rEND_CNT,rGPIO0_CNT,rUSEDW;
 
 // Declare the state register to be "safe" to implement
@@ -47,6 +47,7 @@ initial begin
     rSTART_RST   <= 0;
     rSTART       <= 0;
     rFLAG_CONT   <= 0;
+    rFLAG_START  <= 0;
     rWORD_CNT    <= 0;
     rLATENCY_CNT <= 0;
     rLATENCY     <= 0;
@@ -58,6 +59,8 @@ initial begin
     oGPIO_0      <= 0;
     oSEL_CHANNEL <= 0;
     oENA         <= 0;
+    oSTART       <= 0;
+    rIMIT_WAIT_CNT <= 0;
 end
 // Модуль встроенной функции RS-flip-flop
 SRFF SRFF_iSTART (
@@ -72,12 +75,32 @@ SRFF SRFF_iSTART (
 always @(posedge iCLK) begin
     rUSEDW <= iUSEDW;
 end
+    reg        iWAIT;
+    reg [10:0] rIMIT_WAIT_CNT;
+// Имитация WAIT (Управляется приемником. Запрос на паузу в текущей передаче)
+always @(posedge iCLK) begin
+    if (rIMIT_WAIT_CNT < 11'd256) begin
+        rIMIT_WAIT_CNT <= rIMIT_WAIT_CNT + 11'd1;
+        iWAIT <= 0;
+    end
+    else begin
+        rIMIT_WAIT_CNT <= 0;
+        iWAIT <= 1;
+        // if (11'd5 < rIMIT_WAIT_CNT < 11'd256) begin
+        //     rIMIT_WAIT_CNT <= rIMIT_WAIT_CNT + 11'd1;
+        // end
+        // else begin
+        //     rIMIT_WAIT_CNT <= 0;
+        // end
+    end
+end
 // Main
 always @(posedge iCLK or posedge iRST) begin
     if (iRST) begin      // Сброс
         state        <= GPIO_5; // !!!
         rSTART_RST   <= 0;
         rFLAG_CONT   <= 0;
+        rFLAG_START  <= 0;
         rWORD_CNT    <= 0;
         rLATENCY_CNT <= 0;
         rLATENCY     <= 0;
@@ -88,6 +111,7 @@ always @(posedge iCLK or posedge iRST) begin
         oGPIO_0      <= 0;
         oSEL_CHANNEL <= 0;
         oENA         <= 0;
+        oSTART       <= 0;
     end
     else begin
         case (state)
@@ -142,37 +166,53 @@ always @(posedge iCLK or posedge iRST) begin
                 end
             end
             DATA_READ:begin // Состояние чтения пакетов из FIFO при заполненности FIFO до порога (USEDW),
-                // либо при наличии сигнала окончания приема кадра по BLVDS
-                if (rWORD_CNT < 9'd256) begin //256
-                    oDATA_UPP <= iFIFO_OUT;
-                    oENA      <= 1;
-                    if (rWORD_CNT == 9'd255) begin //255
-                        if (iEMPTY) begin // При опустошении FIFO
-                            state      <= GPIO_0;
-                            oRD_REQ    <= 0;
-//                            rSTART_RST <= 1;
+            // либо при наличии сигнала окончания приема кадра по BLVDS
+                // Анализ сигнала управления WAIT (Управляется приемником. Запрос на паузу в текущей передаче)
+                if (!iWAIT) begin
+                    if (rWORD_CNT < 9'd256) begin //256
+                        oDATA_UPP <= iFIFO_OUT;
+                        oENA      <= 1;
+                        // Формирование сигнала START на шину uPP (Управляется передатчиком. Активируется в начале линии DMA)
+                        if ((rWORD_CNT == 9'd0)&&(!rFLAG_START)) begin 
+                            oSTART <= 1;
+                        end 
+                        else oSTART <= 0;
+                        //
+                        if (rWORD_CNT == 9'd255) begin //255
+                            if (iEMPTY) begin // При опустошении FIFO
+                                state      <= GPIO_0;
+                                oRD_REQ    <= 0;
+                                // rSTART_RST <= 1;
+                            end
+                            else begin // Если FIFO неопустошено
+                                rFLAG_CONT  <= 1; // Флаг для осуществления непрерывного чтения из FIFO (continuous)
+                                rFLAG_START <= 1; // Флаг для формирования сигнала START
+                                state       <= USEDW;
+                            end
+                            rWORD_CNT <= 0;
                         end
-                        else begin // Если FIFO неопустошено
-                            rFLAG_CONT <= 1; // Флаг для осуществления непрерывного чтения из FIFO (continuous)
-                            state      <= USEDW;
+                        else begin
+                            rWORD_CNT <= rWORD_CNT + 9'd1;
+                            state     <= DATA_READ;
                         end
-                        rWORD_CNT <= 0;
                     end
                     else begin
-                        rWORD_CNT <= rWORD_CNT + 9'd1;
-                        state     <= DATA_READ;
+                        state     <= USEDW;
+                        rWORD_CNT <= 0;
+                        oRD_REQ   <= 0;
                     end
                 end
                 else begin
-                    state     <= USEDW;
-                    rWORD_CNT <= 0;
-                    oRD_REQ   <= 0;
+                    state     <= DATA_READ;
+                    oDATA_UPP <= 0;
+                    oENA      <= 0;
                 end
             end
             GPIO_0:begin // Состояние формирования стимулирующих импульсов и GPIO_0
 //                rSTART_RST <= 0;
-                rFLAG_CONT <= 0;
-                oGPIO_0    <= 1;
+                rFLAG_CONT  <= 0;
+                rFLAG_START <= 0;
+                oGPIO_0     <= 1;
                 if (iGPIO5) begin
                     if (rGPIO0_CNT < CHECK_GPIO5) begin // Задержка во время проверки сброса GPIO5
                         rGPIO0_CNT <= rGPIO0_CNT + 9'd1;

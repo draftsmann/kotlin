@@ -1,7 +1,7 @@
 //==================================================================================================
 //  Filename      : BLVDS_uPP_TOP.v
 //  Created On    : 2020-04-08 13:03:35
-//  Last Modified : 2020-04-08 13:03:46
+//  Last Modified : 2020-04-16 14:19:59
 //  Revision      : 
 //  Author        : Roman Kozhemyakin
 //  Company       : AO Kotlin-Novator
@@ -13,7 +13,7 @@
 //==================================================================================================
 module BLVDS_uPP_TOP 
 (
-    input         iC0_56MHZ,iC2_70MHZ,iGPIO5,
+    input         iC0_56MHZ,iC2_70MHZ,iGPIO5,iWAIT,
     input [17:0]  iDATA_BLVDS,
 
     output [15:0] oFULL_ERR_CNT,
@@ -21,6 +21,7 @@ module BLVDS_uPP_TOP
     output [15:0] oEPILOG_ERR_CNT,
     output [15:0] oDATA_UPP,
     output        oGPIO_0,
+	output        oSTART,
     output        oENA
 );
 
@@ -121,6 +122,8 @@ GPIO_SOLVER GPIO_SOLVER_inst (
     .iSEL_CHANNEL   ( wSEL_CH_WR ) ,
     .iUSEDW         ( wRDUSEDW   ) ,
     .iFIFO_OUT      ( wFIFO_OUT  ) ,
+//	.iWAIT          ( iWAIT      ) ,
+	.oSTART         ( oSTART     ) ,
     .oDATA_UPP      ( oDATA_UPP  ) ,
     .oRD_REQ        ( wRD_REQ    ) ,
     .oGPIO_0        ( oGPIO_0    ) ,
